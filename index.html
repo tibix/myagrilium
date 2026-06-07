@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agrilium — Logiciels agricoles intelligents</title>
-<meta name="description" content="Agrilium propose des logiciels et applications mobiles pour l'élevage : CapriScan, CAPRation, ScanAgri Météo, CapCulture. Conçu par des éleveurs, pour des éleveurs.">
-<meta name="keywords" content="logiciel élevage, application caprine, ration chèvre, CapriScan, CAPRation, gestion troupeau, élevage caprin, Agrilium, ScanAgri">
+<meta name="description" content="Agrilium propose des logiciels et applications mobiles pour l'élevage : CapriScan, CapriRation, MétéoScan Pro, CapCulture. Conçu par des éleveurs, pour des éleveurs.">
+<meta name="keywords" content="logiciel élevage, application caprine, ration chèvre, CapriScan, CapriRation, gestion troupeau, élevage caprin, Agrilium, ScanAgri">
 <meta name="author" content="Thibaut Lafon — Agrilium / ScanAgri">
 <meta property="og:title" content="Agrilium — Logiciels agricoles intelligents">
 <meta property="og:description" content="Applications mobiles et logiciels PC pour piloter vos troupeaux, vos rations et vos données. Conçu par des éleveurs.">
@@ -305,13 +305,71 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
 }
 .ov-note { font-size: .78rem; color: var(--text-light); text-align: center; }
 
+/* ── OVERLAY À VENIR ── */
+#overlay-coming-soon {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
+  width: min(680px, 100vw); background: var(--white);
+  overflow-y: auto; transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+#overlay-coming-soon.open { transform: translateX(0); }
+.ov-coming-inner { text-align: center; padding: 48px 32px; }
+.ov-coming-icon { font-size: 4rem; margin-bottom: 24px; }
+.ov-coming-title { font-family: var(--font-serif); font-size: 2rem; color: var(--text-dark); font-weight: 400; margin-bottom: 16px; }
+.ov-coming-title em { font-style: italic; color: var(--green-soft); }
+.ov-coming-desc { font-size: 1rem; color: var(--text-mid); font-weight: 300; line-height: 1.7; max-width: 360px; margin: 0 auto 32px; }
+.ov-coming-name { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text-light); margin-bottom: 32px; }
+.ov-coming-close { position: absolute; top: 16px; right: 20px; }
+
+/* ── TABLETTE (768px - 1024px) ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .nav-links { display: none; }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; }
+  .hero { padding: 100px 6% 80px; }
+  .hero-inner { margin-left: 0 !important; }
+  .hero-stats { gap: 32px; }
+  section { padding: 72px 6%; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .why-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer-top { flex-wrap: wrap; gap: 32px; }
+  #overlay-panel, .overlay-panel { width: min(580px, 95vw); }
+}
+
+/* ── MOBILE (moins de 768px) ── */
 @media (max-width: 768px) {
   .about-grid, .contact-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 28px; }
   .form-row { grid-template-columns: 1fr; }
   .nav-links { display: none; }
-  h1 { font-size: 2.4rem; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
   .footer-top { flex-direction: column; }
+  .hero { padding: 80px 5% 60px; }
+  .hero-inner { margin-left: 0 !important; }
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .hero-eyebrow { font-size: .7rem; }
+  .products-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  section { padding: 60px 5%; }
+  #overlay-panel, .overlay-panel { width: 100vw; }
+  .ov-screenshots { gap: 8px; }
+  .ov-screen { width: 130px; height: 230px; }
+  .ov-hero { padding: 28px 20px 24px; }
+  .ov-body { padding: 24px 20px; }
+  .ov-title { font-size: 1.6rem; }
+  .contact-grid { gap: 40px; }
+  .about-grid { gap: 40px; }
+  .about-visual { min-height: 240px; padding: 32px; }
+  .about-quote { font-size: 1.2rem; }
+  .products-header { flex-direction: column; }
+  .footer-bottom { flex-direction: column; gap: 6px; }
+  .hero-cta { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; }
+  .nav-logo-text { font-size: 1.1rem; }
 }
 </style>
 </head>
@@ -348,8 +406,8 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
     </div>
     <h1 class="fr">Le numérique<br>au service de<br>l'<em>élevage moderne</em></h1>
     <h1 class="en">Digital tools<br>built for<br><em>modern livestock</em></h1>
-    <p class="hero-sub fr">Des outils conçus par des éleveurs, pour des éleveurs. Applications mobiles et logiciels PC pour piloter vos troupeaux, vos rations et vos données au quotidien.</p>
-    <p class="hero-sub en">Tools created by farmers, for farmers. Mobile apps and PC software to manage your herds, rations, and farm data every day.</p>
+    <p class="hero-sub fr">Des outils conçus par un éleveur, pour les éleveurs. Applications mobiles et logiciels PC pour piloter vos troupeaux, vos rations et vos données au quotidien.</p>
+    <p class="hero-sub en">Tools created by a farmer, for farmers. Mobile apps and PC software to manage your herds, rations, and farm data every day.</p>
     <div class="hero-cta">
       <a href="#products" class="btn-primary fr">Voir nos produits</a>
       <a href="#products" class="btn-primary en">Our products</a>
@@ -358,20 +416,16 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">600+</div>
+        <div class="stat-num">1000+</div>
         <div class="stat-label fr">Têtes suivies</div>
         <div class="stat-label en">Animals tracked</div>
       </div>
       <div>
-        <div class="stat-num">5</div>
-        <div class="stat-label fr">Logiciels disponibles</div>
-        <div class="stat-label en">Apps available</div>
+        <div class="stat-num">3</div>
+        <div class="stat-label fr">Élevage</div>
+        <div class="stat-label en">Farm</div>
       </div>
-      <div>
-        <div class="stat-num">∞</div>
-        <div class="stat-label fr">Espèces à venir</div>
-        <div class="stat-label en">Species to come</div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -384,22 +438,23 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       <div class="about-visual">
         <div class="about-visual-bg"></div>
         <div class="about-visual-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/></svg></div>
-        <p class="about-quote fr">"Conçu sur le terrain, validé dans l'<em>étable</em>."</p>
-        <p class="about-quote en">"Designed in the field, validated in the <em>barn</em>."</p>
+        <p class="about-quote fr">"Conçu sur le terrain, validé au <em>quotidien</em>."</p>
+        <p class="about-quote en">"Designed in the field, validated every <em>day</em>."</p>
         <p class="about-author">— Thibaut Lafon, fondateur · 600 chèvres laitières</p>
       </div>
       <div class="about-text">
         <h2><em class="fr">Né</em><em class="en">Born</em><span class="fr"> de la pratique</span><span class="en"> from practice</span></h2>
-        <p class="fr">Agrilium est une auto-entreprise fondée en 2026 par Thibaut Lafon, éleveur caprin et développeur logiciel. Chaque outil naît d'un besoin réel, testé directement sur un troupeau de 600 chèvres laitières en Occitanie.</p>
-        <p class="en">Agrilium is a sole proprietorship founded in 2026 by Thibaut Lafon, a goat farmer and software developer. Every tool comes from a real need, tested on a herd of 600 dairy goats in Occitanie, France.</p>
-        <p class="fr">Notre approche : des interfaces simples, des données fiables, une expérience pensée pour ceux qui travaillent avec leurs mains autant qu'avec leur téléphone.</p>
-        <p class="en">Our approach: simple interfaces, reliable data, and an experience designed for those who work as much with their hands as with their phone.</p>
+        <p class="fr">Agrilium est une récente auto-entreprise fondée en 2026 par Thibaut Lafon, éleveur caprin, bovin et apiculteur. Chaque outil naît d'un besoin réel, testé en premier sur son troupeau de 600 chèvres laitières en Occitanie.</p>
+        <p class="en">Agrilium is a recently founded sole proprietorship created in 2026 by Thibaut Lafon, a goat, cattle and beekeeping farmer. Every tool comes from a real need, first tested on his herd of 600 dairy goats in Occitanie, France.</p>
+        <p class="fr">Notre approche : des interfaces simples, des données fiables, une expérience pensée pour ceux qui travaillent avec leurs mains autant qu'avec leur tête.</p>
+        <p class="en">Our approach: simple interfaces, reliable data, and an experience designed for those who work as much with their hands as with their head.</p>
         <div class="about-badges">
           <span class="badge">🐐 Caprins</span>
-          <span class="badge fr">🐄 Bovins (bientôt)</span><span class="badge en">🐄 Cattle (soon)</span>
-          <span class="badge fr">🐑 Ovins (bientôt)</span><span class="badge en">🐑 Sheep (soon)</span>
-          <span class="badge fr">🐝 Apiculture (bientôt)</span><span class="badge en">🐝 Beekeeping (soon)</span>
-          <span class="badge">ScanAgri · Occitanie · 2026</span>
+          <span class="badge fr">🐄 Bovins</span><span class="badge en">🐄 Cattle</span>
+          <span class="badge fr">🐑 Ovins</span><span class="badge en">🐑 Sheep</span>
+          <span class="badge fr">🐝 Apiculture</span><span class="badge en">🐝 Beekeeping</span>
+          <span class="badge fr">🌦️ Météo agricole</span><span class="badge en">🌦️ Agricultural weather</span>
+          <span class="badge fr">🌾 Calcul de rations</span><span class="badge en">🌾 Ration calculator</span>
         </div>
       </div>
     </div>
@@ -423,29 +478,33 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       <div class="product-card reveal product-card-clickable" onclick="openOverlay('capriscan')" style="cursor:pointer;">
         <div class="card-accent" style="background:linear-gradient(90deg,#2d6645,#4a9463);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#ddf0e4;"><svg viewBox="0 0 24 24" fill="#1a5c34" width="24" height="24"><path d="M12 3a3 3 0 100 6 3 3 0 000-6zM5 8a2 2 0 100 4 2 2 0 000-4zm14 0a2 2 0 100 4 2 2 0 000-4zM12 13c-3 0-9 1.5-9 4v1h18v-1c0-2.5-6-4-9-4z"/></svg></div>
-          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐐</div>
+          <span class="card-badge badge-soon fr">Bientôt disponible</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
-        <div class="card-name">CapriScan</div>
-        <div class="card-tagline fr">Carnet de bord caprin — notation, suivi sanitaire, Bluetooth</div>
-        <div class="card-tagline en">Goat herd logbook — scoring, health tracking, Bluetooth scanner</div>
-        <div class="card-species"><span class="species-tag">📱 Mobile PWA</span><span class="species-tag">🐐 Caprins</span><span class="species-tag">Bluetooth RS420</span></div>
+        <div class="card-name">CapriScan <span style="color:var(--text-light);font-size:.9em">Lait</span></div>
+        <div class="card-tagline fr">Carnet de bord caprin — notation, suivi sanitaire, inventaire, mouvements</div>
+        <div class="card-tagline en">Goat herd logbook — scoring, health tracking, inventory, movements</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">Compatible lecteurs RFID</span></div>
         <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
           <span class="fr">Voir le détail</span><span class="en">View details</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </div>
       </div>
 
-      <div class="product-card reveal">
+      <div class="product-card reveal product-card-clickable" onclick="openOverlay('capriRation')" style="cursor:pointer;">
         <div class="card-accent" style="background:linear-gradient(90deg,#c8a96e,#e8d4a8);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#fdf3e3;"><svg viewBox="0 0 24 24" fill="#8a6020" width="24" height="24"><path d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z"/></svg></div>
-          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐐</div>
+          <span class="card-badge badge-soon fr">Bientôt disponible</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
-        <div class="card-name">CAPRation</div>
+        <div class="card-name">CapriRation</div>
         <div class="card-tagline fr">Calcul de rations caprines — PC & Mobile, formules INRA 2007</div>
         <div class="card-tagline en">Goat ration calculator — PC & Mobile, INRA 2007 formulas</div>
-        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐐 Caprins</span><span class="species-tag">INRA 2007</span></div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">INRA 2007</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </div>
 
       <div class="product-card reveal product-card-clickable" onclick="openOverlay('meteo')" style="cursor:pointer;">
@@ -454,9 +513,9 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
           <div class="card-icon" style="background:#e8f0fd;"><svg viewBox="0 0 24 24" fill="#2a4a8c" width="24" height="24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg></div>
           <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
         </div>
-        <div class="card-name">ScanAgri Météo</div>
-        <div class="card-tagline fr">Météo agricole locale — prévisions adaptées à l'élevage</div>
-        <div class="card-tagline en">Local agricultural weather — forecasts tailored for livestock</div>
+        <div class="card-name">MétéoScan Pro</div>
+        <div class="card-tagline fr">Météo agricole locale — prévisions adaptées à l'élevage, conseils et alertes en temps réel</div>
+        <div class="card-tagline en">Local agricultural weather — livestock-tailored forecasts, real-time advice and alerts</div>
         <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🌦️ Météo</span></div>
         <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
           <span class="fr">Voir le détail</span><span class="en">View details</span>
@@ -467,12 +526,12 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       <div class="product-card reveal product-card-clickable" onclick="openOverlay('capculture')" style="cursor:pointer;">
         <div class="card-accent" style="background:linear-gradient(90deg,#3b6d11,#639922);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#eaf3de;"><svg viewBox="0 0 24 24" fill="#3b6d11" width="24" height="24"><path d="M17 8C8 10 5.9 16.17 3.82 21H5.71C7.14 17.31 8.92 13.75 17 11.91V14l4-4-4-4v2z"/></svg></div>
-          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+          <div class="card-icon" style="background:#eaf3de;font-size:24px;line-height:1;">🌾</div>
+          <span class="card-badge badge-soon fr">Bientôt disponible</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
         <div class="card-name">CapCulture</div>
-        <div class="card-tagline fr">Gestion des cultures — suivi des parcelles et récoltes</div>
-        <div class="card-tagline en">Crop management — field and harvest tracking</div>
+        <div class="card-tagline fr">Saisie des cultures — suivi des parcelles et récoltes, bilan</div>
+        <div class="card-tagline en">Crop entry — field and harvest tracking, annual report</div>
         <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🌾 Cultures</span></div>
         <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
           <span class="fr">Voir le détail</span><span class="en">View details</span>
@@ -480,40 +539,116 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
         </div>
       </div>
 
-      <div class="product-card coming-soon reveal">
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
         <div class="card-accent" style="background:var(--cream-dark);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#f5f0e8;"><svg viewBox="0 0 24 24" fill="#aaa" width="24" height="24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
-          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐂</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
-        <div class="card-name">BoviScan <span style="color:var(--text-light);font-size:.9em">L / V</span></div>
-        <div class="card-tagline fr">Carnet de bord bovin — troupeaux laitiers et viande</div>
-        <div class="card-tagline en">Cattle logbook — dairy and beef herds</div>
-        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐄 Bovins</span></div>
+        <div class="card-name">BoviScan <span style="color:var(--text-light);font-size:.9em">Lait</span></div>
+        <div class="card-tagline fr">Carnet de bord bovin — troupeau laitier</div>
+        <div class="card-tagline en">Cattle logbook — dairy herd</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐄 Bovins lait</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </div>
 
-      <div class="product-card coming-soon reveal">
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
         <div class="card-accent" style="background:var(--cream-dark);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#f5f0e8;"><svg viewBox="0 0 24 24" fill="#aaa" width="24" height="24"><circle cx="12" cy="9" r="4"/><path d="M12 15c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></div>
-          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐂</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
-        <div class="card-name">OviScan <span style="color:var(--text-light);font-size:.9em">L / V</span></div>
-        <div class="card-tagline fr">Carnet de bord ovin — troupeaux laitiers et viande</div>
-        <div class="card-tagline en">Sheep logbook — dairy and meat flocks</div>
-        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐑 Ovins</span></div>
+        <div class="card-name">BoviScan <span style="color:var(--text-light);font-size:.9em">Viande</span></div>
+        <div class="card-tagline fr">Carnet de bord bovin — troupeau viande</div>
+        <div class="card-tagline en">Cattle logbook — beef herd</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐄 Bovins viande</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </div>
 
-      <div class="product-card coming-soon reveal">
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
         <div class="card-accent" style="background:var(--cream-dark);"></div>
         <div class="card-top">
-          <div class="card-icon" style="background:#faeeda;"><svg viewBox="0 0 24 24" fill="#ba7517" width="24" height="24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐂</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">BoviRation</div>
+        <div class="card-tagline fr">Calcul de rations bovines — formules INRA 2007</div>
+        <div class="card-tagline en">Cattle ration calculator — INRA 2007 formulas</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐄 Bovins</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐑</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">OviScan <span style="color:var(--text-light);font-size:.9em">Lait</span></div>
+        <div class="card-tagline fr">Carnet de bord ovin — troupeau laitier</div>
+        <div class="card-tagline en">Sheep logbook — dairy flock</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐑 Ovins lait</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐑</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">OviScan <span style="color:var(--text-light);font-size:.9em">Viande</span></div>
+        <div class="card-tagline fr">Carnet de bord ovin — troupeau viande</div>
+        <div class="card-tagline en">Sheep logbook — meat flock</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐑 Ovins viande</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#f5f0e8;font-size:24px;line-height:1;">🐑</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">OviRation</div>
+        <div class="card-tagline fr">Calcul de rations ovines — formules INRA 2007</div>
+        <div class="card-tagline en">Sheep ration calculator — INRA 2007 formulas</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐑 Ovins</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon reveal product-card-clickable" onclick="openOverlay('coming-soon')" style="cursor:pointer;">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#faeeda;font-size:24px;line-height:1;">🐝</div>
+          <span class="card-badge badge-soon fr">À venir</span><span class="card-badge badge-soon en">Coming soon</span>
         </div>
         <div class="card-name">ApiScan</div>
         <div class="card-tagline fr">Gestion de ruches — suivi apicole et traitements</div>
         <div class="card-tagline en">Hive management — beekeeping tracking and treatments</div>
         <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐝 Apiculture</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </div>
 
     </div>
@@ -526,14 +661,14 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
     <p class="section-label reveal"><span class="fr">Pourquoi Agrilium</span><span class="en">Why Agrilium</span></p>
     <h2 class="reveal fr">Conçu pour <em>ceux qui produisent</em></h2>
     <h2 class="reveal en">Built for <em>those who produce</em></h2>
-    <p class="section-desc reveal fr">Pas de compromis entre puissance et simplicité. Nos outils sont utilisés chaque jour dans nos propres élevages.</p>
-    <p class="section-desc reveal en">No compromise between power and simplicity. Our tools are used daily in our own farms.</p>
+    <p class="section-desc reveal fr">Puissant et simple à la fois. Chaque fonctionnalité est née d'un besoin concret, testé quotidiennement sur le terrain.</p>
+    <p class="section-desc reveal en">Powerful and simple at the same time. Every feature was born from a concrete need, tested daily in the field.</p>
     <div class="why-grid">
       <div class="why-item reveal">
         <div class="why-num">01</div>
         <div class="why-title fr">Éleveur avant tout</div><div class="why-title en">Farmer first</div>
-        <div class="why-desc fr">Thibaut gère 600 chèvres laitières. Chaque fonctionnalité est testée sur le terrain avant d'être publiée.</div>
-        <div class="why-desc en">Thibaut manages 600 dairy goats. Every feature is tested in the field before release.</div>
+        <div class="why-desc fr">Thibaut gère ses chèvres laitières, vaches allaitantes et abeilles. Chaque fonctionnalité est testée sur le terrain avant d'être publiée.</div>
+        <div class="why-desc en">Thibaut manages his dairy goats, beef cattle and bees. Every feature is tested in the field before release.</div>
       </div>
       <div class="why-item reveal">
         <div class="why-num">02</div>
@@ -544,14 +679,14 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       <div class="why-item reveal">
         <div class="why-num">03</div>
         <div class="why-title fr">Formules validées</div><div class="why-title en">Validated formulas</div>
-        <div class="why-desc fr">CAPRation utilise les normes INRA 2007 vérifiées contre des tableurs Excel de référence.</div>
-        <div class="why-desc en">CAPRation uses INRA 2007 standards verified against reference Excel workbooks.</div>
+        <div class="why-desc fr">CapriRation utilise les normes INRA 2007 vérifiées.</div>
+        <div class="why-desc en">CapriRation uses verified INRA 2007 standards.</div>
       </div>
       <div class="why-item reveal">
         <div class="why-num">04</div>
         <div class="why-title fr">Écosystème cohérent</div><div class="why-title en">Coherent ecosystem</div>
-        <div class="why-desc fr">PC, mobile, Bluetooth — tous les outils partagent vos données via Firebase.</div>
-        <div class="why-desc en">PC, mobile, Bluetooth — all tools share your data via Firebase.</div>
+        <div class="why-desc fr">PC, mobile, Bluetooth — tous les outils partagent et sécurisent vos données via le cloud.</div>
+        <div class="why-desc en">PC, mobile, Bluetooth — all tools share and secure your data via the cloud.</div>
       </div>
     </div>
   </div>
@@ -568,27 +703,25 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
         <div class="timeline-dot dot-done">✓</div>
         <div>
           <div class="timeline-period">2025 — 2026</div>
-          <div class="timeline-title fr">Fondations caprines</div><div class="timeline-title en">Goat foundations</div>
-          <div class="timeline-items fr">CapriScan mobile · CAPRation PC & Mobile · CapCulture · ScanAgri Météo · Firebase sync · Bluetooth RS420</div>
-          <div class="timeline-items en">CapriScan mobile · CAPRation PC & Mobile · CapCulture · ScanAgri Weather · Firebase sync · Bluetooth RS420</div>
+          <div class="timeline-title fr"></div><div class="timeline-title en"></div>
+          <div class="timeline-items fr">CapriScan PC & Mobile · CapriRation PC & Mobile · CapCulture · MétéoScan Pro</div>
+          <div class="timeline-items en">CapriScan PC & Mobile · CapriRation PC & Mobile · CapCulture · MétéoScan Pro</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot dot-now">→</div>
         <div>
           <div class="timeline-period fr">2026 — en cours</div><div class="timeline-period en">2026 — in progress</div>
-          <div class="timeline-title fr">Commercialisation & bovins</div><div class="timeline-title en">Launch & cattle</div>
-          <div class="timeline-items fr">Abonnements Stripe · BoviScan L & V · Notifications sanitaires · Rapports PDF</div>
-          <div class="timeline-items en">Stripe subscriptions · BoviScan L & V · Health notifications · PDF reports</div>
+          <div class="timeline-items fr">BoviScan L & V · BoviRation · OviScan L & V · OviRation</div>
+          <div class="timeline-items en">BoviScan L & V · BoviRation · OviScan L & V · OviRation</div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-dot dot-next">◌</div>
         <div>
           <div class="timeline-period">2027</div>
-          <div class="timeline-title fr">Ovins & apiculture</div><div class="timeline-title en">Sheep & beekeeping</div>
-          <div class="timeline-items fr">OviScan L & V · ApiScan · Partage entre éleveurs · Export BDNI</div>
-          <div class="timeline-items en">OviScan L & V · ApiScan · Farmer sharing · BDNI export</div>
+          <div class="timeline-items fr">ApiScan · Partage entre éleveurs</div>
+          <div class="timeline-items en">ApiScan · Farmer sharing</div>
         </div>
       </div>
     </div>
@@ -606,26 +739,35 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
         <div class="form-row">
           <div class="form-group">
             <label><span class="fr">Prénom</span><span class="en">First name</span></label>
-            <input type="text" placeholder="Thibaut">
+            <input type="text" placeholder="">
           </div>
           <div class="form-group">
             <label><span class="fr">Nom</span><span class="en">Last name</span></label>
-            <input type="text" placeholder="Lafon">
+            <input type="text" placeholder="">
           </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email" placeholder="contact@monelevage.fr">
+          <input type="email" placeholder="">
         </div>
         <div class="form-group">
           <label><span class="fr">Sujet</span><span class="en">Subject</span></label>
           <select>
             <option class="fr">Choisir un produit…</option>
             <option class="en">Choose a product…</option>
-            <option>CapriScan</option><option>CAPRation</option>
-            <option>ScanAgri Météo</option><option>CapCulture</option>
-            <option class="fr">Autre / Question générale</option>
-            <option class="en">Other / General question</option>
+            <option>CapriScan</option>
+            <option>CapriRation</option>
+            <option>BoviScan Lait</option>
+            <option>BoviScan Viande</option>
+            <option>BoviRation</option>
+            <option>OviScan Lait</option>
+            <option>OviScan Viande</option>
+            <option>OviRation</option>
+            <option>ApiScan</option>
+            <option>CapCulture</option>
+            <option>MétéoScan Pro</option>
+            <option class="fr">Question générale</option>
+            <option class="en">General question</option>
           </select>
         </div>
         <div class="form-group">
@@ -637,12 +779,10 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
         <button class="btn-primary en" style="align-self:flex-start;">Send message</button>
       </div>
       <div class="contact-info">
-        <h3>Agrilium / ScanAgri</h3>
-        <p class="fr">Auto-entreprise basée en Occitanie. Réponse sous 48h en général.</p>
-        <p class="en">Sole proprietorship based in Occitanie, France. Response within 48 hours.</p>
+        <h3>Agrilium</h3>
         <div class="contact-detail">
           <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          <div class="contact-detail-text"><strong>Email</strong>contact@agrilium.fr</div>
+          <div class="contact-detail-text"><strong>Email</strong>contact.agrilium@yahoo.com</div>
         </div>
         <div class="contact-detail">
           <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
@@ -651,10 +791,7 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
             Occitanie, France
           </div>
         </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
-          <div class="contact-detail-text"><strong>GitHub</strong>tibix.github.io/CapriScan</div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -669,13 +806,17 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
           <div class="nav-logo-mark" style="width:28px;height:28px;"><svg viewBox="0 0 24 24" fill="#0e2318" width="14" height="14"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/></svg></div>
           <span style="font-family:var(--font-serif);font-size:1.05rem;color:var(--white);">Agrilium</span>
         </div>
-        <p class="fr">Logiciels agricoles intelligents, conçus par des éleveurs pour des éleveurs.</p>
-        <p class="en">Smart agricultural software, designed by farmers for farmers.</p>
+        <p class="fr"></p>
+        <p class="en"></p>
       </div>
       <div class="footer-links">
         <h4><span class="fr">Produits</span><span class="en">Products</span></h4>
-        <a href="#products">CapriScan</a><a href="#products">CAPRation</a>
-        <a href="#products">ScanAgri Météo</a><a href="#products">CapCulture</a>
+        <a href="#products">CapriScan</a><a href="#products">CapriRation</a>
+        <a href="#products">BoviScan Lait</a><a href="#products">BoviScan Viande</a>
+        <a href="#products">BoviRation</a><a href="#products">OviScan Lait</a>
+        <a href="#products">OviScan Viande</a><a href="#products">OviRation</a>
+        <a href="#products">ApiScan</a><a href="#products">CapCulture</a>
+        <a href="#products">MétéoScan Pro</a>
       </div>
       <div class="footer-links">
         <h4><span class="fr">Entreprise</span><span class="en">Company</span></h4>
@@ -690,8 +831,8 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="fr">© 2026 Agrilium / ScanAgri — Thibaut Lafon. Tous droits réservés.</p>
-      <p class="en">© 2026 Agrilium / ScanAgri — Thibaut Lafon. All rights reserved.</p>
+      <p class="fr">© 2026 Agrilium — Thibaut Lafon. Tous droits réservés.</p>
+      <p class="en">© 2026 Agrilium — Thibaut Lafon. All rights reserved.</p>
       <p>Occitanie, France</p>
     </div>
   </div>
@@ -836,15 +977,34 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
     </div>
   </div>
 </div>
+
+<!-- OVERLAY : À VENIR -->
+<div id="overlay-coming-soon" role="dialog" aria-modal="true">
+  <div class="ov-coming-close">
+    <button class="ov-close-btn" onclick="closeOverlay()">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="ov-coming-inner">
+    <div class="ov-coming-icon">🚜</div>
+    <div class="ov-coming-title fr">En cours de <em>développement</em></div>
+    <div class="ov-coming-title en">Currently in <em>development</em></div>
+    <div class="ov-coming-desc fr">Cette application est en cours de développement. Laissez-nous votre email pour être notifié à la sortie.</div>
+    <div class="ov-coming-desc en">This application is currently being developed. Leave your email to be notified at launch.</div>
+    <a href="#contact" class="btn-primary fr" onclick="closeOverlay()">Me notifier à la sortie</a>
+    <a href="#contact" class="btn-primary en" onclick="closeOverlay()">Notify me at launch</a>
+  </div>
+</div>
+
 <div id="overlay-backdrop" onclick="closeOverlay()"></div>
 
-<!-- OVERLAY PANEL : ScanAgri Météo -->
-<div id="overlay-panel" role="dialog" aria-modal="true" aria-label="ScanAgri Météo">
+<!-- OVERLAY PANEL : MétéoScan Pro -->
+<div id="overlay-panel" role="dialog" aria-modal="true" aria-label="MétéoScan Pro">
 
   <!-- Barre sticky -->
   <div class="ov-close">
-    <span class="ov-close-breadcrumb fr">Produits → <span>ScanAgri Météo</span></span>
-    <span class="ov-close-breadcrumb en">Products → <span>ScanAgri Météo</span></span>
+    <span class="ov-close-breadcrumb fr">Produits → <span>MétéoScan Pro</span></span>
+    <span class="ov-close-breadcrumb en">Products → <span>MétéoScan Pro</span></span>
     <button class="ov-close-btn" onclick="closeOverlay()" aria-label="Fermer">
       <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -860,7 +1020,7 @@ footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px s
       <span class="ov-badge fr">✓ Disponible — Android</span>
       <span class="ov-badge en">✓ Available — Android</span>
     </div>
-    <div class="ov-title">ScanAgri Météo</div>
+    <div class="ov-title">MétéoScan Pro</div>
     <div class="ov-tagline fr">La météo agricole pensée pour l'éleveur : prévisions locales, alertes, indice de confort animal.</div>
     <div class="ov-tagline en">Agricultural weather designed for livestock farmers: local forecasts, alerts, animal comfort index.</div>
   </div>
@@ -993,16 +1153,17 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // ── OVERLAY ──
 function openOverlay(id) {
-  // Ferme tous les panneaux ouverts
-  document.querySelectorAll('.overlay-panel, #overlay-panel').forEach(p => p.classList.remove('open'));
-  // Ouvre le bon
-  const panel = id === 'meteo' ? document.getElementById('overlay-panel') : document.getElementById('overlay-' + id);
+  document.querySelectorAll('.overlay-panel, #overlay-panel, #overlay-coming-soon').forEach(p => p.classList.remove('open'));
+  let panel;
+  if(id === 'meteo') panel = document.getElementById('overlay-panel');
+  else if(id === 'coming-soon' || id === 'capriRation') panel = document.getElementById('overlay-coming-soon');
+  else panel = document.getElementById('overlay-' + id);
   if(panel) panel.classList.add('open');
   document.getElementById('overlay-backdrop').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeOverlay() {
-  document.querySelectorAll('.overlay-panel, #overlay-panel').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.overlay-panel, #overlay-panel, #overlay-coming-soon').forEach(p => p.classList.remove('open'));
   document.getElementById('overlay-backdrop').classList.remove('open');
   document.body.style.overflow = '';
 }
