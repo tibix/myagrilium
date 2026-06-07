@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agrilium — Logiciels agricoles intelligents</title>
+<meta name="description" content="Agrilium propose des logiciels et applications mobiles pour l'élevage : CapriScan, CAPRation, ScanAgri Météo, CapCulture. Conçu par des éleveurs, pour des éleveurs.">
+<meta name="keywords" content="logiciel élevage, application caprine, ration chèvre, CapriScan, CAPRation, gestion troupeau, élevage caprin, Agrilium, ScanAgri">
+<meta name="author" content="Thibaut Lafon — Agrilium / ScanAgri">
+<meta property="og:title" content="Agrilium — Logiciels agricoles intelligents">
+<meta property="og:description" content="Applications mobiles et logiciels PC pour piloter vos troupeaux, vos rations et vos données. Conçu par des éleveurs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.agrilium.fr">
+<link rel="canonical" href="https://www.agrilium.fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep: #0e2318;
+  --green-soft: #2d6645;
+  --green-light: #4a9463;
+  --green-pale: #d4ead9;
+  --cream: #f5f0e8;
+  --cream-dark: #ebe4d6;
+  --gold: #c8a96e;
+  --gold-light: #e8d4a8;
+  --white: #fafaf7;
+  --text-dark: #0e1a12;
+  --text-mid: #3a5244;
+  --text-light: #6b8a75;
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 4px; --radius-lg: 12px;
+  --shadow: 0 2px 24px rgba(14,35,24,.10);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); background: var(--cream); color: var(--text-dark); font-size: 16px; line-height: 1.65; }
+
+/* ── SYSTÈME BILINGUE ── */
+/* Par défaut : FR visible, EN caché */
+.en { display: none !important; }
+/* Quand body a la classe "lang-en" : EN visible, FR caché */
+body.lang-en .fr { display: none !important; }
+body.lang-en .en { display: revert !important; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(14,35,24,.97); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%; height: 64px;
+  border-bottom: 1px solid rgba(200,169,110,.18);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-mark { width: 34px; height: 34px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.nav-logo-mark svg { width: 18px; height: 18px; fill: var(--green-deep); }
+.nav-logo-text { font-family: var(--font-serif); font-size: 1.25rem; color: var(--white); letter-spacing: .02em; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { color: rgba(245,240,232,.7); text-decoration: none; font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.lang-toggle { cursor: pointer; background: rgba(200,169,110,.15); border: 1px solid rgba(200,169,110,.3); border-radius: 20px; padding: 4px 14px; color: var(--gold-light); font-size: .8rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: background .2s; font-family: var(--font-sans); }
+.lang-toggle:hover { background: rgba(200,169,110,.28); }
+
+/* HERO */
+.hero { min-height: 100vh; background: var(--green-deep); display: flex; flex-direction: column; justify-content: center; padding: 100px 5% 80px; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; opacity: .07; background-image: radial-gradient(circle at 70% 60%, #4a9463 0%, transparent 55%), radial-gradient(circle at 20% 30%, #c8a96e 0%, transparent 40%); }
+.hero-grid { position: absolute; inset: 0; opacity: .04; background-image: linear-gradient(rgba(200,169,110,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,110,.5) 1px, transparent 1px); background-size: 60px 60px; }
+.hero-inner { max-width: 900px; width: 100%; position: relative; z-index: 1; margin-left: 250px; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,169,110,.12); border: 1px solid rgba(200,169,110,.3); border-radius: 20px; padding: 5px 14px; margin-bottom: 32px; color: var(--gold); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; }
+.hero-eyebrow .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; display: inline-block; }
+h1 { font-family: var(--font-serif); font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.08; color: var(--white); margin-bottom: 24px; font-weight: 400; }
+h1 em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: clamp(1rem, 1.8vw, 1.2rem); color: rgba(245,240,232,.65); max-width: 540px; margin-bottom: 48px; font-weight: 300; line-height: 1.7; }
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary { background: var(--gold); color: var(--green-deep); padding: 14px 32px; border-radius: var(--radius); font-weight: 500; font-size: .95rem; text-decoration: none; letter-spacing: .02em; border: none; cursor: pointer; transition: background .2s, transform .15s; display: inline-block; }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--white); padding: 14px 32px; border-radius: var(--radius); font-weight: 400; font-size: .95rem; text-decoration: none; border: 1px solid rgba(245,240,232,.3); cursor: pointer; transition: border-color .2s, background .2s; display: inline-block; }
+.btn-outline:hover { border-color: rgba(245,240,232,.7); background: rgba(245,240,232,.06); }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 48px; margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(200,169,110,.15); }
+.stat-num { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); line-height: 1; }
+.stat-label { font-size: .8rem; color: rgba(245,240,232,.5); letter-spacing: .06em; text-transform: uppercase; margin-top: 4px; }
+
+/* SECTIONS */
+section { padding: 96px 5%; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+.section-label { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--green-soft); font-weight: 500; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.section-label::before { content: ''; width: 24px; height: 2px; background: var(--green-soft); display: inline-block; }
+h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; color: var(--text-dark); font-weight: 400; margin-bottom: 20px; }
+h2 em { font-style: italic; color: var(--green-soft); }
+.section-desc { font-size: 1.05rem; color: var(--text-mid); max-width: 540px; line-height: 1.7; font-weight: 300; }
+
+/* ABOUT */
+.about { background: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+.about-visual { background: var(--green-deep); border-radius: var(--radius-lg); padding: 48px; position: relative; overflow: hidden; min-height: 320px; display: flex; flex-direction: column; justify-content: flex-end; }
+.about-visual-bg { position: absolute; inset: 0; opacity: .15; background: radial-gradient(circle at 80% 20%, var(--gold) 0%, transparent 60%); }
+.about-visual-icon { position: absolute; top: 32px; right: 32px; opacity: .2; }
+.about-visual-icon svg { width: 80px; height: 80px; fill: var(--gold); }
+.about-quote { font-family: var(--font-serif); font-size: 1.5rem; color: var(--white); line-height: 1.3; position: relative; z-index: 1; font-weight: 400; }
+.about-quote em { color: var(--gold); }
+.about-author { color: rgba(245,240,232,.5); font-size: .85rem; margin-top: 16px; position: relative; z-index: 1; }
+.about-text h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; color: var(--text-dark); }
+.about-text p { color: var(--text-mid); font-weight: 300; margin-bottom: 16px; }
+.about-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.badge { background: var(--green-pale); color: var(--green-soft); border-radius: 20px; padding: 5px 14px; font-size: .8rem; font-weight: 500; }
+
+/* PRODUCTS */
+.products { background: var(--cream); }
+.products-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 56px; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 24px; }
+.product-card { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--cream-dark); padding: 32px; transition: transform .2s, box-shadow .2s; position: relative; overflow: hidden; }
+.product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.product-card.coming-soon { opacity: .72; }
+.card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+.card-icon { width: 48px; height: 48px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.card-badge { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; padding: 4px 10px; border-radius: 20px; }
+.badge-live { background: #ddf0e4; color: #1a5c34; }
+.badge-soon { background: var(--cream-dark); color: var(--text-light); }
+.card-name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400; margin-bottom: 8px; }
+.card-tagline { font-size: .9rem; color: var(--text-mid); font-weight: 300; margin-bottom: 20px; }
+.card-species { display: flex; flex-wrap: wrap; gap: 6px; }
+.species-tag { font-size: .75rem; color: var(--text-light); border: 1px solid var(--cream-dark); border-radius: 20px; padding: 3px 10px; }
+.card-accent { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+
+/* WHY */
+.why { background: var(--green-deep); }
+.why .section-label { color: var(--gold); }
+.why .section-label::before { background: var(--gold); }
+.why h2 { color: var(--white); }
+.why .section-desc { color: rgba(245,240,232,.6); }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px; margin-top: 56px; }
+.why-item { border-top: 1px solid rgba(200,169,110,.2); padding-top: 24px; }
+.why-num { font-family: var(--font-serif); font-size: 2.5rem; color: rgba(200,169,110,.3); line-height: 1; margin-bottom: 16px; }
+.why-title { font-weight: 500; color: var(--white); margin-bottom: 8px; font-size: 1rem; }
+.why-desc { font-size: .9rem; color: rgba(245,240,232,.55); font-weight: 300; line-height: 1.6; }
+
+/* ROADMAP */
+.roadmap { background: var(--white); }
+.roadmap-timeline { margin-top: 56px; position: relative; }
+.roadmap-timeline::before { content: ''; position: absolute; left: 16px; top: 0; bottom: 0; width: 1px; background: var(--cream-dark); }
+.timeline-item { display: flex; gap: 32px; margin-bottom: 40px; position: relative; }
+.timeline-dot { width: 33px; height: 33px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 500; position: relative; z-index: 1; margin-top: 2px; }
+.dot-done { background: var(--green-soft); color: var(--white); }
+.dot-now  { background: var(--gold); color: var(--green-deep); }
+.dot-next { background: var(--cream-dark); color: var(--text-light); }
+.timeline-period { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text-light); font-weight: 500; margin-bottom: 6px; }
+.timeline-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 6px; }
+.timeline-items { font-size: .9rem; color: var(--text-mid); font-weight: 300; }
+
+/* CONTACT */
+.contact { background: var(--cream); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 56px; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: .8rem; font-weight: 500; color: var(--text-mid); letter-spacing: .04em; text-transform: uppercase; }
+.form-group input, .form-group textarea, .form-group select { background: var(--white); border: 1px solid var(--cream-dark); border-radius: var(--radius); padding: 12px 16px; font-family: var(--font-sans); font-size: .95rem; color: var(--text-dark); transition: border-color .2s; outline: none; }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--green-soft); }
+.form-group textarea { min-height: 120px; resize: vertical; }
+.contact-info h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; }
+.contact-info p { color: var(--text-mid); font-weight: 300; margin-bottom: 32px; }
+.contact-detail { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px; }
+.contact-detail-icon { width: 36px; height: 36px; background: var(--green-pale); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-detail-icon svg { width: 16px; height: 16px; fill: var(--green-soft); }
+.contact-detail-text { font-size: .9rem; color: var(--text-mid); }
+.contact-detail-text strong { display: block; color: var(--text-dark); font-weight: 500; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
+
+/* FOOTER */
+footer { background: var(--green-deep); padding: 48px 5% 32px; border-top: 1px solid rgba(200,169,110,.1); }
+.footer-inner { max-width: 1080px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; margin-bottom: 48px; }
+.footer-brand p { color: rgba(245,240,232,.45); font-size: .85rem; max-width: 240px; margin-top: 10px; line-height: 1.6; }
+.footer-links h4 { color: rgba(245,240,232,.4); font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 16px; }
+.footer-links a { display: block; color: rgba(245,240,232,.6); text-decoration: none; font-size: .875rem; margin-bottom: 10px; transition: color .2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(200,169,110,.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { color: rgba(245,240,232,.3); font-size: .8rem; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── OVERLAY PRODUIT ── */
+.product-card-clickable:hover { border-color: #b8d4f0; }
+
+#overlay-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(14,26,18,.55); backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none; transition: opacity .3s ease;
+}
+#overlay-backdrop.open { opacity: 1; pointer-events: all; }
+
+#overlay-panel, .overlay-panel {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
+  width: min(680px, 100vw); background: var(--white);
+  overflow-y: auto; transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+}
+#overlay-panel.open, .overlay-panel.open { transform: translateX(0); }
+
+.ov-close {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--white); border-bottom: 1px solid var(--cream-dark);
+  padding: 16px 28px; display: flex; align-items: center; justify-content: space-between;
+}
+.ov-close-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--cream-dark);
+  background: var(--cream); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .15s; flex-shrink: 0;
+}
+.ov-close-btn:hover { background: var(--cream-dark); }
+.ov-close-btn svg { width: 16px; height: 16px; stroke: var(--text-dark); fill: none; stroke-width: 2; stroke-linecap: round; }
+.ov-close-breadcrumb { font-size: .8rem; color: var(--text-light); }
+.ov-close-breadcrumb span { color: var(--text-dark); font-weight: 500; }
+
+.ov-hero {
+  background: var(--green-deep); padding: 40px 28px 36px;
+  position: relative; overflow: hidden;
+}
+.ov-hero-bg { position: absolute; inset: 0; opacity: .1; background: radial-gradient(circle at 80% 30%, #5577cc 0%, transparent 60%); }
+.ov-hero-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; position: relative; z-index: 1; }
+.ov-icon { width: 56px; height: 56px; border-radius: 14px; background: #e8f0fd; display: flex; align-items: center; justify-content: center; }
+.ov-badge { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: rgba(61,200,130,.15); border: 1px solid rgba(61,200,130,.3); color: #6ee8a8; }
+.ov-title { font-family: var(--font-serif); font-size: 2rem; color: var(--white); font-weight: 400; position: relative; z-index: 1; margin-bottom: 10px; }
+.ov-tagline { font-size: 1rem; color: rgba(245,240,232,.65); font-weight: 300; position: relative; z-index: 1; max-width: 440px; line-height: 1.6; }
+
+.ov-body { padding: 32px 28px; flex: 1; }
+
+/* Galerie screenshots */
+.ov-gallery { margin-bottom: 40px; }
+.ov-gallery-title { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-light); font-weight: 500; margin-bottom: 16px; }
+.ov-screenshots { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
+.ov-screenshots::-webkit-scrollbar { height: 4px; }
+.ov-screenshots::-webkit-scrollbar-track { background: var(--cream-dark); border-radius: 2px; }
+.ov-screenshots::-webkit-scrollbar-thumb { background: var(--text-light); border-radius: 2px; }
+.ov-screen {
+  flex-shrink: 0; scroll-snap-align: start;
+  width: 160px; height: 284px; border-radius: 14px;
+  border: 1px solid var(--cream-dark); overflow: hidden;
+  background: var(--cream); position: relative; cursor: pointer;
+  transition: transform .2s;
+}
+.ov-screen:hover { transform: scale(1.02); }
+.ov-screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ov-screen-placeholder {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(145deg, var(--cream) 0%, var(--cream-dark) 100%);
+  color: var(--text-light); font-size: .75rem; text-align: center; padding: 16px;
+}
+.ov-screen-placeholder svg { width: 28px; height: 28px; opacity: .4; }
+
+/* Lightbox */
+#lightbox {
+  position: fixed; inset: 0; z-index: 300; background: rgba(14,26,18,.92);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+#lightbox.open { opacity: 1; pointer-events: all; }
+#lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; object-fit: contain; }
+#lightbox-close { position: absolute; top: 24px; right: 24px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+#lightbox-close svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+/* Features */
+.ov-features { margin-bottom: 36px; }
+.ov-section-title { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; color: var(--text-dark); margin-bottom: 16px; }
+.ov-feature-list { display: flex; flex-direction: column; gap: 12px; }
+.ov-feature { display: flex; gap: 12px; align-items: flex-start; }
+.ov-feature-dot { width: 20px; height: 20px; border-radius: 50%; background: #ddf0e4; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.ov-feature-dot svg { width: 11px; height: 11px; stroke: #1a5c34; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.ov-feature-text { font-size: .92rem; color: var(--text-mid); font-weight: 300; line-height: 1.5; }
+.ov-feature-text strong { color: var(--text-dark); font-weight: 500; }
+
+/* Pricing */
+.ov-pricing {
+  background: var(--cream); border: 1px solid var(--cream-dark);
+  border-radius: var(--radius-lg); padding: 24px; margin-bottom: 28px;
+}
+.ov-price-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.ov-price-main { display: flex; align-items: baseline; gap: 4px; }
+.ov-price-amount { font-family: var(--font-serif); font-size: 2.2rem; color: var(--text-dark); }
+.ov-price-period { font-size: .85rem; color: var(--text-light); }
+.ov-trial-badge { background: #ddf0e4; color: #1a5c34; border-radius: 20px; padding: 5px 14px; font-size: .8rem; font-weight: 500; }
+.ov-price-desc { font-size: .85rem; color: var(--text-mid); font-weight: 300; }
+
+/* CTA */
+.ov-cta { display: flex; flex-direction: column; gap: 12px; }
+.btn-play {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--green-deep); color: var(--white);
+  padding: 15px 24px; border-radius: var(--radius);
+  font-weight: 500; font-size: .95rem; text-decoration: none; border: none; cursor: pointer;
+  transition: background .2s;
+}
+.btn-play:hover { background: #1a3d28; }
+.btn-play svg { width: 20px; height: 20px; fill: var(--white); }
+.btn-play-soon {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--cream-dark); color: var(--text-light);
+  padding: 15px 24px; border-radius: var(--radius);
+  font-size: .9rem; border: 1px dashed var(--text-light);
+  cursor: not-allowed;
+}
+.ov-note { font-size: .78rem; color: var(--text-light); text-align: center; }
+
+@media (max-width: 768px) {
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 28px; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  h1 { font-size: 2.4rem; }
+  .footer-top { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/><path d="M12 8v8M9 13l3 3 3-3" fill="none" stroke="#0e2318" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </div>
+    <span class="nav-logo-text">Agrilium</span>
+  </a>
+  <div class="nav-links">
+    <a href="#products" class="fr">Produits</a>
+    <a href="#products" class="en">Products</a>
+    <a href="#about" class="fr">À propos</a>
+    <a href="#about" class="en">About</a>
+    <a href="#roadmap" class="fr">Feuille de route</a>
+    <a href="#roadmap" class="en">Roadmap</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="lang-toggle" onclick="toggleLang()" id="lang-lbl">EN</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span class="fr">Logiciels agricoles de précision</span>
+      <span class="en">Precision agricultural software</span>
+    </div>
+    <h1 class="fr">Le numérique<br>au service de<br>l'<em>élevage moderne</em></h1>
+    <h1 class="en">Digital tools<br>built for<br><em>modern livestock</em></h1>
+    <p class="hero-sub fr">Des outils conçus par des éleveurs, pour des éleveurs. Applications mobiles et logiciels PC pour piloter vos troupeaux, vos rations et vos données au quotidien.</p>
+    <p class="hero-sub en">Tools created by farmers, for farmers. Mobile apps and PC software to manage your herds, rations, and farm data every day.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary fr">Voir nos produits</a>
+      <a href="#products" class="btn-primary en">Our products</a>
+      <a href="#contact" class="btn-outline fr">Nous contacter</a>
+      <a href="#contact" class="btn-outline en">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">600+</div>
+        <div class="stat-label fr">Têtes suivies</div>
+        <div class="stat-label en">Animals tracked</div>
+      </div>
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label fr">Logiciels disponibles</div>
+        <div class="stat-label en">Apps available</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label fr">Espèces à venir</div>
+        <div class="stat-label en">Species to come</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <p class="section-label reveal"><span class="fr">À propos d'Agrilium</span><span class="en">About Agrilium</span></p>
+    <div class="about-grid reveal">
+      <div class="about-visual">
+        <div class="about-visual-bg"></div>
+        <div class="about-visual-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/></svg></div>
+        <p class="about-quote fr">"Conçu sur le terrain, validé dans l'<em>étable</em>."</p>
+        <p class="about-quote en">"Designed in the field, validated in the <em>barn</em>."</p>
+        <p class="about-author">— Thibaut Lafon, fondateur · 600 chèvres laitières</p>
+      </div>
+      <div class="about-text">
+        <h2><em class="fr">Né</em><em class="en">Born</em><span class="fr"> de la pratique</span><span class="en"> from practice</span></h2>
+        <p class="fr">Agrilium est une auto-entreprise fondée en 2026 par Thibaut Lafon, éleveur caprin et développeur logiciel. Chaque outil naît d'un besoin réel, testé directement sur un troupeau de 600 chèvres laitières en Occitanie.</p>
+        <p class="en">Agrilium is a sole proprietorship founded in 2026 by Thibaut Lafon, a goat farmer and software developer. Every tool comes from a real need, tested on a herd of 600 dairy goats in Occitanie, France.</p>
+        <p class="fr">Notre approche : des interfaces simples, des données fiables, une expérience pensée pour ceux qui travaillent avec leurs mains autant qu'avec leur téléphone.</p>
+        <p class="en">Our approach: simple interfaces, reliable data, and an experience designed for those who work as much with their hands as with their phone.</p>
+        <div class="about-badges">
+          <span class="badge">🐐 Caprins</span>
+          <span class="badge fr">🐄 Bovins (bientôt)</span><span class="badge en">🐄 Cattle (soon)</span>
+          <span class="badge fr">🐑 Ovins (bientôt)</span><span class="badge en">🐑 Sheep (soon)</span>
+          <span class="badge fr">🐝 Apiculture (bientôt)</span><span class="badge en">🐝 Beekeeping (soon)</span>
+          <span class="badge">ScanAgri · Occitanie · 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="products-header reveal">
+      <div>
+        <p class="section-label"><span class="fr">Nos logiciels</span><span class="en">Our software</span></p>
+        <h2 class="fr">Des outils pour chaque <em>espèce</em></h2>
+        <h2 class="en">Tools for every <em>species</em></h2>
+      </div>
+      <p class="section-desc fr">Applications mobiles et logiciels PC pensés pour le terrain, avec ou sans connexion internet.</p>
+      <p class="section-desc en">Mobile apps and PC software designed for field use, with or without internet.</p>
+    </div>
+    <div class="products-grid">
+
+      <div class="product-card reveal product-card-clickable" onclick="openOverlay('capriscan')" style="cursor:pointer;">
+        <div class="card-accent" style="background:linear-gradient(90deg,#2d6645,#4a9463);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#ddf0e4;"><svg viewBox="0 0 24 24" fill="#1a5c34" width="24" height="24"><path d="M12 3a3 3 0 100 6 3 3 0 000-6zM5 8a2 2 0 100 4 2 2 0 000-4zm14 0a2 2 0 100 4 2 2 0 000-4zM12 13c-3 0-9 1.5-9 4v1h18v-1c0-2.5-6-4-9-4z"/></svg></div>
+          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+        </div>
+        <div class="card-name">CapriScan</div>
+        <div class="card-tagline fr">Carnet de bord caprin — notation, suivi sanitaire, Bluetooth</div>
+        <div class="card-tagline en">Goat herd logbook — scoring, health tracking, Bluetooth scanner</div>
+        <div class="card-species"><span class="species-tag">📱 Mobile PWA</span><span class="species-tag">🐐 Caprins</span><span class="species-tag">Bluetooth RS420</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="card-accent" style="background:linear-gradient(90deg,#c8a96e,#e8d4a8);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#fdf3e3;"><svg viewBox="0 0 24 24" fill="#8a6020" width="24" height="24"><path d="M3 3h18v2H3V3zm0 4h12v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2zm0 4h18v2H3v-2z"/></svg></div>
+          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+        </div>
+        <div class="card-name">CAPRation</div>
+        <div class="card-tagline fr">Calcul de rations caprines — PC & Mobile, formules INRA 2007</div>
+        <div class="card-tagline en">Goat ration calculator — PC & Mobile, INRA 2007 formulas</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🐐 Caprins</span><span class="species-tag">INRA 2007</span></div>
+      </div>
+
+      <div class="product-card reveal product-card-clickable" onclick="openOverlay('meteo')" style="cursor:pointer;">
+        <div class="card-accent" style="background:linear-gradient(90deg,#2a4a8c,#5577cc);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#e8f0fd;"><svg viewBox="0 0 24 24" fill="#2a4a8c" width="24" height="24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg></div>
+          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+        </div>
+        <div class="card-name">ScanAgri Météo</div>
+        <div class="card-tagline fr">Météo agricole locale — prévisions adaptées à l'élevage</div>
+        <div class="card-tagline en">Local agricultural weather — forecasts tailored for livestock</div>
+        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🌦️ Météo</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card reveal product-card-clickable" onclick="openOverlay('capculture')" style="cursor:pointer;">
+        <div class="card-accent" style="background:linear-gradient(90deg,#3b6d11,#639922);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#eaf3de;"><svg viewBox="0 0 24 24" fill="#3b6d11" width="24" height="24"><path d="M17 8C8 10 5.9 16.17 3.82 21H5.71C7.14 17.31 8.92 13.75 17 11.91V14l4-4-4-4v2z"/></svg></div>
+          <span class="card-badge badge-live fr">✓ Disponible</span><span class="card-badge badge-live en">✓ Available</span>
+        </div>
+        <div class="card-name">CapCulture</div>
+        <div class="card-tagline fr">Gestion des cultures — suivi des parcelles et récoltes</div>
+        <div class="card-tagline en">Crop management — field and harvest tracking</div>
+        <div class="card-species"><span class="species-tag">💻 PC + 📱 Mobile</span><span class="species-tag">🌾 Cultures</span></div>
+        <div style="margin-top:16px;font-size:.8rem;color:var(--green-soft);font-weight:500;display:flex;align-items:center;gap:5px;">
+          <span class="fr">Voir le détail</span><span class="en">View details</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="product-card coming-soon reveal">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#f5f0e8;"><svg viewBox="0 0 24 24" fill="#aaa" width="24" height="24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">BoviScan <span style="color:var(--text-light);font-size:.9em">L / V</span></div>
+        <div class="card-tagline fr">Carnet de bord bovin — troupeaux laitiers et viande</div>
+        <div class="card-tagline en">Cattle logbook — dairy and beef herds</div>
+        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐄 Bovins</span></div>
+      </div>
+
+      <div class="product-card coming-soon reveal">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#f5f0e8;"><svg viewBox="0 0 24 24" fill="#aaa" width="24" height="24"><circle cx="12" cy="9" r="4"/><path d="M12 15c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/></svg></div>
+          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">OviScan <span style="color:var(--text-light);font-size:.9em">L / V</span></div>
+        <div class="card-tagline fr">Carnet de bord ovin — troupeaux laitiers et viande</div>
+        <div class="card-tagline en">Sheep logbook — dairy and meat flocks</div>
+        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐑 Ovins</span></div>
+      </div>
+
+      <div class="product-card coming-soon reveal">
+        <div class="card-accent" style="background:var(--cream-dark);"></div>
+        <div class="card-top">
+          <div class="card-icon" style="background:#faeeda;"><svg viewBox="0 0 24 24" fill="#ba7517" width="24" height="24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <span class="card-badge badge-soon fr">Bientôt</span><span class="card-badge badge-soon en">Coming soon</span>
+        </div>
+        <div class="card-name">ApiScan</div>
+        <div class="card-tagline fr">Gestion de ruches — suivi apicole et traitements</div>
+        <div class="card-tagline en">Hive management — beekeeping tracking and treatments</div>
+        <div class="card-species"><span class="species-tag">📱 Mobile</span><span class="species-tag">🐝 Apiculture</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <p class="section-label reveal"><span class="fr">Pourquoi Agrilium</span><span class="en">Why Agrilium</span></p>
+    <h2 class="reveal fr">Conçu pour <em>ceux qui produisent</em></h2>
+    <h2 class="reveal en">Built for <em>those who produce</em></h2>
+    <p class="section-desc reveal fr">Pas de compromis entre puissance et simplicité. Nos outils sont utilisés chaque jour dans nos propres élevages.</p>
+    <p class="section-desc reveal en">No compromise between power and simplicity. Our tools are used daily in our own farms.</p>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-num">01</div>
+        <div class="why-title fr">Éleveur avant tout</div><div class="why-title en">Farmer first</div>
+        <div class="why-desc fr">Thibaut gère 600 chèvres laitières. Chaque fonctionnalité est testée sur le terrain avant d'être publiée.</div>
+        <div class="why-desc en">Thibaut manages 600 dairy goats. Every feature is tested in the field before release.</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">02</div>
+        <div class="why-title fr">Hors ligne possible</div><div class="why-title en">Offline-ready</div>
+        <div class="why-desc fr">Applications PWA fonctionnant sans internet. Synchronisation cloud à la reconnexion.</div>
+        <div class="why-desc en">PWA apps that work without internet. Cloud sync when reconnected.</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">03</div>
+        <div class="why-title fr">Formules validées</div><div class="why-title en">Validated formulas</div>
+        <div class="why-desc fr">CAPRation utilise les normes INRA 2007 vérifiées contre des tableurs Excel de référence.</div>
+        <div class="why-desc en">CAPRation uses INRA 2007 standards verified against reference Excel workbooks.</div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">04</div>
+        <div class="why-title fr">Écosystème cohérent</div><div class="why-title en">Coherent ecosystem</div>
+        <div class="why-desc fr">PC, mobile, Bluetooth — tous les outils partagent vos données via Firebase.</div>
+        <div class="why-desc en">PC, mobile, Bluetooth — all tools share your data via Firebase.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="section-inner">
+    <p class="section-label reveal"><span class="fr">Feuille de route</span><span class="en">Roadmap</span></p>
+    <h2 class="reveal fr">Ce qui <em>arrive</em></h2>
+    <h2 class="reveal en">What's <em>coming</em></h2>
+    <div class="roadmap-timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot dot-done">✓</div>
+        <div>
+          <div class="timeline-period">2025 — 2026</div>
+          <div class="timeline-title fr">Fondations caprines</div><div class="timeline-title en">Goat foundations</div>
+          <div class="timeline-items fr">CapriScan mobile · CAPRation PC & Mobile · CapCulture · ScanAgri Météo · Firebase sync · Bluetooth RS420</div>
+          <div class="timeline-items en">CapriScan mobile · CAPRation PC & Mobile · CapCulture · ScanAgri Weather · Firebase sync · Bluetooth RS420</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot dot-now">→</div>
+        <div>
+          <div class="timeline-period fr">2026 — en cours</div><div class="timeline-period en">2026 — in progress</div>
+          <div class="timeline-title fr">Commercialisation & bovins</div><div class="timeline-title en">Launch & cattle</div>
+          <div class="timeline-items fr">Abonnements Stripe · BoviScan L & V · Notifications sanitaires · Rapports PDF</div>
+          <div class="timeline-items en">Stripe subscriptions · BoviScan L & V · Health notifications · PDF reports</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot dot-next">◌</div>
+        <div>
+          <div class="timeline-period">2027</div>
+          <div class="timeline-title fr">Ovins & apiculture</div><div class="timeline-title en">Sheep & beekeeping</div>
+          <div class="timeline-items fr">OviScan L & V · ApiScan · Partage entre éleveurs · Export BDNI</div>
+          <div class="timeline-items en">OviScan L & V · ApiScan · Farmer sharing · BDNI export</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal"><span class="fr">Contact</span><span class="en">Contact</span></p>
+    <h2 class="reveal fr">Parlons de <em>votre élevage</em></h2>
+    <h2 class="reveal en">Let's talk about <em>your farm</em></h2>
+    <div class="contact-grid reveal">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="fr">Prénom</span><span class="en">First name</span></label>
+            <input type="text" placeholder="Thibaut">
+          </div>
+          <div class="form-group">
+            <label><span class="fr">Nom</span><span class="en">Last name</span></label>
+            <input type="text" placeholder="Lafon">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="contact@monelevage.fr">
+        </div>
+        <div class="form-group">
+          <label><span class="fr">Sujet</span><span class="en">Subject</span></label>
+          <select>
+            <option class="fr">Choisir un produit…</option>
+            <option class="en">Choose a product…</option>
+            <option>CapriScan</option><option>CAPRation</option>
+            <option>ScanAgri Météo</option><option>CapCulture</option>
+            <option class="fr">Autre / Question générale</option>
+            <option class="en">Other / General question</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><span class="fr">Message</span><span class="en">Message</span></label>
+          <textarea class="fr" placeholder="Décrivez votre élevage et vos besoins…"></textarea>
+          <textarea class="en" placeholder="Tell us about your farm and your needs…"></textarea>
+        </div>
+        <button class="btn-primary fr" style="align-self:flex-start;">Envoyer le message</button>
+        <button class="btn-primary en" style="align-self:flex-start;">Send message</button>
+      </div>
+      <div class="contact-info">
+        <h3>Agrilium / ScanAgri</h3>
+        <p class="fr">Auto-entreprise basée en Occitanie. Réponse sous 48h en général.</p>
+        <p class="en">Sole proprietorship based in Occitanie, France. Response within 48 hours.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div class="contact-detail-text"><strong>Email</strong>contact@agrilium.fr</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="contact-detail-text">
+            <strong><span class="fr">Localisation</span><span class="en">Location</span></strong>
+            Occitanie, France
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></div>
+          <div class="contact-detail-text"><strong>GitHub</strong>tibix.github.io/CapriScan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="nav-logo-mark" style="width:28px;height:28px;"><svg viewBox="0 0 24 24" fill="#0e2318" width="14" height="14"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/></svg></div>
+          <span style="font-family:var(--font-serif);font-size:1.05rem;color:var(--white);">Agrilium</span>
+        </div>
+        <p class="fr">Logiciels agricoles intelligents, conçus par des éleveurs pour des éleveurs.</p>
+        <p class="en">Smart agricultural software, designed by farmers for farmers.</p>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Produits</span><span class="en">Products</span></h4>
+        <a href="#products">CapriScan</a><a href="#products">CAPRation</a>
+        <a href="#products">ScanAgri Météo</a><a href="#products">CapCulture</a>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Entreprise</span><span class="en">Company</span></h4>
+        <a href="#about" class="fr">À propos</a><a href="#about" class="en">About</a>
+        <a href="#roadmap" class="fr">Feuille de route</a><a href="#roadmap" class="en">Roadmap</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Légal</span><span class="en">Legal</span></h4>
+        <a href="#" class="fr">CGU</a><a href="#" class="en">Terms of use</a>
+        <a href="#" class="fr">Confidentialité</a><a href="#" class="en">Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="fr">© 2026 Agrilium / ScanAgri — Thibaut Lafon. Tous droits réservés.</p>
+      <p class="en">© 2026 Agrilium / ScanAgri — Thibaut Lafon. All rights reserved.</p>
+      <p>Occitanie, France</p>
+    </div>
+  </div>
+</footer>
+
+<!-- OVERLAY : CapriScan -->
+<div id="overlay-capriscan" class="overlay-panel" role="dialog" aria-modal="true">
+  <div class="ov-close">
+    <span class="ov-close-breadcrumb fr">Produits → <span>CapriScan</span></span>
+    <span class="ov-close-breadcrumb en">Products → <span>CapriScan</span></span>
+    <button class="ov-close-btn" onclick="closeOverlay()" aria-label="Fermer">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="ov-hero" style="background:linear-gradient(135deg,#0a1f12 0%,#1a3d28 100%);">
+    <div class="ov-hero-bg" style="background:radial-gradient(circle at 80% 30%,#4a9463 0%,transparent 60%);"></div>
+    <div class="ov-hero-top">
+      <div class="ov-icon" style="background:#ddf0e4;">
+        <svg viewBox="0 0 24 24" fill="#1a5c34" width="28" height="28"><path d="M12 3a3 3 0 100 6 3 3 0 000-6zM5 8a2 2 0 100 4 2 2 0 000-4zm14 0a2 2 0 100 4 2 2 0 000-4zM12 13c-3 0-9 1.5-9 4v1h18v-1c0-2.5-6-4-9-4z"/></svg>
+      </div>
+      <span class="ov-badge fr">✓ Disponible — Mobile & PC</span>
+      <span class="ov-badge en">✓ Available — Mobile & PC</span>
+    </div>
+    <div class="ov-title">CapriScan</div>
+    <div class="ov-tagline fr">Le carnet de bord numérique pour l'éleveur caprin : notation, santé, reproduction, Bluetooth.</div>
+    <div class="ov-tagline en">The digital logbook for goat farmers: scoring, health, reproduction, Bluetooth scanner.</div>
+  </div>
+  <div class="ov-body">
+    <div class="ov-gallery">
+      <div class="ov-gallery-title fr">Captures d'écran</div>
+      <div class="ov-gallery-title en">Screenshots</div>
+      <div class="ov-screenshots">
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Accueil</span><span class="en">Home</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Liste animaux</span><span class="en">Animal list</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Fiche animal</span><span class="en">Animal card</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Session notation</span><span class="en">Scoring session</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Statistiques</span><span class="en">Statistics</span></div></div>
+      </div>
+    </div>
+    <div class="ov-features">
+      <div class="ov-section-title fr">Fonctionnalités</div>
+      <div class="ov-section-title en">Features</div>
+      <div class="ov-feature-list">
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Notation 1 à 6</strong> — évaluation rapide de chaque animal en session de traite</div><div class="ov-feature-text en"><strong>1 to 6 scoring</strong> — quick evaluation of each animal during milking sessions</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Scanner Bluetooth RS420</strong> — lecture des boucles auriculaires sans les mains</div><div class="ov-feature-text en"><strong>Bluetooth RS420 scanner</strong> — hands-free ear tag reading</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Suivi sanitaire</strong> — alertes traitements, vaccins, délais d'attente</div><div class="ov-feature-text en"><strong>Health tracking</strong> — treatment alerts, vaccines, withdrawal periods</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Carnet de bord</strong> — événements, mises bas, échographies, alertes</div><div class="ov-feature-text en"><strong>Logbook</strong> — events, births, ultrasounds, alerts</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Hors ligne d'abord</strong> — fonctionne sans internet, sync Firebase à la reconnexion</div><div class="ov-feature-text en"><strong>Offline-first</strong> — works without internet, Firebase sync on reconnection</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Statistiques & exports</strong> — dashboard, rapports CSV, historique des sessions</div><div class="ov-feature-text en"><strong>Stats & exports</strong> — dashboard, CSV reports, session history</div></div>
+      </div>
+    </div>
+    <!-- Tarifs CapriScan -->
+    <div class="ov-section-title fr" style="margin-bottom:14px;">Tarifs</div>
+    <div class="ov-section-title en" style="margin-bottom:14px;">Pricing</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;">
+      <div class="ov-pricing">
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light);margin-bottom:10px;">📱 Mobile</div>
+        <div class="ov-price-main"><span class="ov-price-amount">15 €</span><span class="ov-price-period fr">/mois</span><span class="ov-price-period en">/month</span></div>
+        <div class="ov-price-desc fr" style="margin-top:8px;">PWA Android · Bluetooth RS420 · Sync cloud</div>
+        <div class="ov-price-desc en" style="margin-top:8px;">Android PWA · Bluetooth RS420 · Cloud sync</div>
+      </div>
+      <div class="ov-pricing">
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-light);margin-bottom:10px;">💻 PC</div>
+        <div class="ov-price-main"><span class="ov-price-amount">10 €</span><span class="ov-price-period fr">/mois</span><span class="ov-price-period en">/month</span></div>
+        <div class="ov-price-desc fr" style="margin-top:8px;">Windows · Tableaux de bord · Exports CSV</div>
+        <div class="ov-price-desc en" style="margin-top:8px;">Windows · Dashboards · CSV exports</div>
+      </div>
+    </div>
+    <div class="ov-cta">
+      <div class="btn-play-soon">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 18.5v-13A1.5 1.5 0 015.2 4.1l13 6.5a1.5 1.5 0 010 2.8l-13 6.5A1.5 1.5 0 013 18.5z" fill="#aaa"/></svg>
+        <span class="fr">Bientôt sur Google Play</span><span class="en">Coming soon on Google Play</span>
+      </div>
+      <div class="ov-note fr">Laissez votre email en contact pour être notifié à la sortie</div>
+      <div class="ov-note en">Leave your email in the contact form to be notified at launch</div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY : CapCulture -->
+<div id="overlay-capculture" class="overlay-panel" role="dialog" aria-modal="true">
+  <div class="ov-close">
+    <span class="ov-close-breadcrumb fr">Produits → <span>CapCulture</span></span>
+    <span class="ov-close-breadcrumb en">Products → <span>CapCulture</span></span>
+    <button class="ov-close-btn" onclick="closeOverlay()" aria-label="Fermer">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="ov-hero" style="background:linear-gradient(135deg,#0d1f0a 0%,#1e3d10 100%);">
+    <div class="ov-hero-bg" style="background:radial-gradient(circle at 80% 30%,#639922 0%,transparent 60%);"></div>
+    <div class="ov-hero-top">
+      <div class="ov-icon" style="background:#eaf3de;">
+        <svg viewBox="0 0 24 24" fill="#3b6d11" width="28" height="28"><path d="M17 8C8 10 5.9 16.17 3.82 21H5.71C7.14 17.31 8.92 13.75 17 11.91V14l4-4-4-4v2z"/></svg>
+      </div>
+      <span class="ov-badge fr">✓ Disponible — PC & Mobile</span>
+      <span class="ov-badge en">✓ Available — PC & Mobile</span>
+    </div>
+    <div class="ov-title">CapCulture</div>
+    <div class="ov-tagline fr">Gérez vos parcelles, cultures et rendements depuis votre téléphone ou votre PC, avec carte satellite intégrée.</div>
+    <div class="ov-tagline en">Manage your fields, crops and yields from your phone or PC, with integrated satellite map.</div>
+  </div>
+  <div class="ov-body">
+    <div class="ov-gallery">
+      <div class="ov-gallery-title fr">Captures d'écran</div>
+      <div class="ov-gallery-title en">Screenshots</div>
+      <div class="ov-screenshots">
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Carte parcelles</span><span class="en">Field map</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Vue satellite</span><span class="en">Satellite view</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Saisie rendement</span><span class="en">Yield entry</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Bilan annuel</span><span class="en">Annual report</span></div></div>
+        <div class="ov-screen"><div class="ov-screen-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span class="fr">Cadastre</span><span class="en">Land registry</span></div></div>
+      </div>
+    </div>
+    <div class="ov-features">
+      <div class="ov-section-title fr">Fonctionnalités</div>
+      <div class="ov-section-title en">Features</div>
+      <div class="ov-feature-list">
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Parcelles sur carte satellite</strong> — visualisez et délimitez vos parcelles en vue aérienne</div><div class="ov-feature-text en"><strong>Fields on satellite map</strong> — view and outline your fields from aerial view</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Carte cadastrale</strong> — superposition du cadastre pour identifier les limites officielles</div><div class="ov-feature-text en"><strong>Land registry overlay</strong> — cadastre layer to identify official field boundaries</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Saisie des rendements</strong> — enregistrez les récoltes par parcelle et par culture</div><div class="ov-feature-text en"><strong>Yield recording</strong> — log harvests by field and crop type</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Surface automatique</strong> — calcul de la surface de chaque parcelle en hectares</div><div class="ov-feature-text en"><strong>Automatic area</strong> — automatic field area calculation in hectares</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>Bilan rendement annuel</strong> — production totale par culture, comparaison entre campagnes</div><div class="ov-feature-text en"><strong>Annual yield report</strong> — total production by crop, campaign comparison</div></div>
+        <div class="ov-feature"><div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="ov-feature-text fr"><strong>PC & Mobile</strong> — accès depuis votre bureau ou sur le terrain depuis votre téléphone</div><div class="ov-feature-text en"><strong>PC & Mobile</strong> — access from your desk or in the field from your phone</div></div>
+      </div>
+    </div>
+    <div class="ov-pricing" style="margin-bottom:28px;">
+      <div class="ov-price-top">
+        <div class="ov-price-main"><span class="ov-price-amount">10 €</span><span class="ov-price-period fr">/mois</span><span class="ov-price-period en">/month</span></div>
+        <span class="ov-trial-badge fr">PC + Mobile inclus</span>
+        <span class="ov-trial-badge en">PC + Mobile included</span>
+      </div>
+      <div class="ov-price-desc fr">Un seul abonnement pour l'accès PC et mobile. Résiliable à tout moment.</div>
+      <div class="ov-price-desc en">One subscription for both PC and mobile access. Cancel anytime.</div>
+    </div>
+    <div class="ov-cta">
+      <div class="btn-play-soon">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 18.5v-13A1.5 1.5 0 015.2 4.1l13 6.5a1.5 1.5 0 010 2.8l-13 6.5A1.5 1.5 0 013 18.5z" fill="#aaa"/></svg>
+        <span class="fr">Bientôt disponible</span><span class="en">Coming soon</span>
+      </div>
+      <div class="ov-note fr">Laissez votre email en contact pour être notifié à la sortie</div>
+      <div class="ov-note en">Leave your email in the contact form to be notified at launch</div>
+    </div>
+  </div>
+</div>
+<div id="overlay-backdrop" onclick="closeOverlay()"></div>
+
+<!-- OVERLAY PANEL : ScanAgri Météo -->
+<div id="overlay-panel" role="dialog" aria-modal="true" aria-label="ScanAgri Météo">
+
+  <!-- Barre sticky -->
+  <div class="ov-close">
+    <span class="ov-close-breadcrumb fr">Produits → <span>ScanAgri Météo</span></span>
+    <span class="ov-close-breadcrumb en">Products → <span>ScanAgri Météo</span></span>
+    <button class="ov-close-btn" onclick="closeOverlay()" aria-label="Fermer">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Hero de l'overlay -->
+  <div class="ov-hero">
+    <div class="ov-hero-bg"></div>
+    <div class="ov-hero-top">
+      <div class="ov-icon">
+        <svg viewBox="0 0 24 24" fill="#2a4a8c" width="28" height="28"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+      </div>
+      <span class="ov-badge fr">✓ Disponible — Android</span>
+      <span class="ov-badge en">✓ Available — Android</span>
+    </div>
+    <div class="ov-title">ScanAgri Météo</div>
+    <div class="ov-tagline fr">La météo agricole pensée pour l'éleveur : prévisions locales, alertes, indice de confort animal.</div>
+    <div class="ov-tagline en">Agricultural weather designed for livestock farmers: local forecasts, alerts, animal comfort index.</div>
+  </div>
+
+  <div class="ov-body">
+
+    <!-- Galerie captures d'écran -->
+    <div class="ov-gallery">
+      <div class="ov-gallery-title fr">Captures d'écran</div>
+      <div class="ov-gallery-title en">Screenshots</div>
+      <div class="ov-screenshots" id="screenshots-meteo">
+        <!-- Les vraies captures remplacent ces placeholders -->
+        <div class="ov-screen" onclick="openLightbox(0)">
+          <div class="ov-screen-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span class="fr">Écran accueil</span><span class="en">Home screen</span>
+          </div>
+        </div>
+        <div class="ov-screen" onclick="openLightbox(1)">
+          <div class="ov-screen-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span class="fr">Prévisions 7 jours</span><span class="en">7-day forecast</span>
+          </div>
+        </div>
+        <div class="ov-screen" onclick="openLightbox(2)">
+          <div class="ov-screen-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span class="fr">Alertes élevage</span><span class="en">Livestock alerts</span>
+          </div>
+        </div>
+        <div class="ov-screen" onclick="openLightbox(3)">
+          <div class="ov-screen-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span class="fr">Indice confort</span><span class="en">Comfort index</span>
+          </div>
+        </div>
+        <div class="ov-screen" onclick="openLightbox(4)">
+          <div class="ov-screen-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span class="fr">Réglages</span><span class="en">Settings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fonctionnalités -->
+    <div class="ov-features">
+      <div class="ov-section-title fr">Fonctionnalités</div>
+      <div class="ov-section-title en">Features</div>
+      <div class="ov-feature-list">
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Météo hyper-locale</strong> — prévisions à l'heure, ciblées sur votre exploitation</div>
+          <div class="ov-feature-text en"><strong>Hyper-local weather</strong> — hourly forecasts targeted to your farm location</div>
+        </div>
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Indice de confort animal</strong> — température ressentie adaptée aux caprins et bovins</div>
+          <div class="ov-feature-text en"><strong>Animal comfort index</strong> — perceived temperature adapted for goats and cattle</div>
+        </div>
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Alertes personnalisées</strong> — gel, canicule, orage, vent fort, fortes pluies</div>
+          <div class="ov-feature-text en"><strong>Custom alerts</strong> — frost, heat wave, storm, strong winds, heavy rain</div>
+        </div>
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Prévisions 7 jours</strong> — planifiez tonte, traitements et sorties de troupeau</div>
+          <div class="ov-feature-text en"><strong>7-day forecast</strong> — plan shearing, treatments and herd outings</div>
+        </div>
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Pluviométrie cumulée</strong> — suivi des précipitations pour la gestion des pâtures</div>
+          <div class="ov-feature-text en"><strong>Cumulative rainfall</strong> — precipitation tracking for pasture management</div>
+        </div>
+        <div class="ov-feature">
+          <div class="ov-feature-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="ov-feature-text fr"><strong>Interface épurée</strong> — lisible d'un coup d'œil, même les mains sales</div>
+          <div class="ov-feature-text en"><strong>Clean interface</strong> — readable at a glance, even with dirty hands</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarif -->
+    <div class="ov-pricing">
+      <div class="ov-price-top">
+        <div class="ov-price-main">
+          <span class="ov-price-amount">0,99 €</span>
+          <span class="ov-price-period fr">/ mois</span>
+          <span class="ov-price-period en">/ month</span>
+        </div>
+        <span class="ov-trial-badge fr">7 jours offerts</span>
+        <span class="ov-trial-badge en">7-day free trial</span>
+      </div>
+      <div class="ov-price-desc fr">Essai gratuit sans engagement. Paiement géré par Google Play. Résiliable à tout moment.</div>
+      <div class="ov-price-desc en">Free trial, no commitment. Payment managed by Google Play. Cancel anytime.</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="ov-cta">
+      <div class="btn-play-soon">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M3 18.5v-13A1.5 1.5 0 015.2 4.1l13 6.5a1.5 1.5 0 010 2.8l-13 6.5A1.5 1.5 0 013 18.5z" fill="#aaa"/></svg>
+        <span class="fr">Bientôt sur Google Play</span>
+        <span class="en">Coming soon on Google Play</span>
+      </div>
+      <div class="ov-note fr">Publication en cours — laissez votre email en contact pour être notifié</div>
+      <div class="ov-note en">Publishing in progress — leave your email in the contact form to be notified</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function toggleLang(){
+  const b = document.body, l = document.getElementById('lang-lbl');
+  if(b.classList.contains('lang-en')){ b.classList.remove('lang-en'); l.textContent='EN'; document.documentElement.lang='fr'; }
+  else { b.classList.add('lang-en'); l.textContent='FR'; document.documentElement.lang='en'; }
+}
+
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── OVERLAY ──
+function openOverlay(id) {
+  // Ferme tous les panneaux ouverts
+  document.querySelectorAll('.overlay-panel, #overlay-panel').forEach(p => p.classList.remove('open'));
+  // Ouvre le bon
+  const panel = id === 'meteo' ? document.getElementById('overlay-panel') : document.getElementById('overlay-' + id);
+  if(panel) panel.classList.add('open');
+  document.getElementById('overlay-backdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeOverlay() {
+  document.querySelectorAll('.overlay-panel, #overlay-panel').forEach(p => p.classList.remove('open'));
+  document.getElementById('overlay-backdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { closeOverlay(); closeLightbox(); } });
+
+// ── LIGHTBOX ──
+// Pour ajouter vos vraies captures : remplacez les placeholders par des <img src="...">
+// et renseignez ce tableau avec les URLs correspondantes
+const screenshots = [
+  null, null, null, null, null  // remplacer par 'captures/meteo-01.png', etc.
+];
+function openLightbox(i) {
+  const src = screenshots[i];
+  if(!src) return; // pas de photo encore
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+}
+</script>
+</body>
+</html>
