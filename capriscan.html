@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CapriScan — Logiciel de gestion de troupeau caprin | Agrilium</title>
+<meta name="description" content="CapriScan est le carnet de bord numérique pour éleveurs caprins : inventaire, suivi sanitaire, pharmacie vétérinaire, alertes DAL/DAV, documents PDF, lecteur RFID Bluetooth RS420. PC et mobile.">
+<meta name="keywords" content="logiciel gestion troupeau chèvre, carnet élevage caprin, suivi sanitaire chèvres, logiciel élevage caprin, RFID caprin">
+<meta name="author" content="Thibaut Lafon — Agrilium">
+<link rel="canonical" href="https://www.myagrilium.com/capriscan">
+<meta property="og:title" content="CapriScan — Logiciel de gestion de troupeau caprin">
+<meta property="og:description" content="CapriScan est le carnet de bord numérique pour éleveurs caprins : inventaire, suivi sanitaire, pharmacie vétérinaire, alertes DAL/DAV, documents PDF, lecteur RFID Bluetooth RS420. PC et mobile.">
+<meta property="og:url" content="https://www.myagrilium.com/capriscan">
+<meta property="og:type" content="product">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4R351JN591"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-4R351JN591');</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CapriScan","applicationCategory":"BusinessApplication","operatingSystem":"Web, Android","description":"CapriScan est le carnet de bord numérique pour éleveurs caprins : inventaire, suivi sanitaire, pharmacie vétérinaire, alertes DAL/DAV, documents PDF, lecteur RFID Bluetooth RS420. PC et mobile.","offers":{"@type":"Offer","price":"29.99","priceCurrency":"EUR"},"provider":{"@type":"Organization","name":"Agrilium","url":"https://www.myagrilium.com"}}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-deep:#0e2318;--green-soft:#2d6645;--green-light:#4a9463;
+  --green-pale:#d4ead9;--cream:#f5f0e8;--cream-dark:#ebe4d6;
+  --gold:#c8a96e;--gold-light:#e8d4a8;--white:#fafaf7;
+  --text-dark:#0e1a12;--text-mid:#3a5244;--text-light:#6b8a75;
+  --font-serif:'DM Serif Display',Georgia,serif;
+  --font-sans:'DM Sans',system-ui,sans-serif;
+  --radius:4px;--radius-lg:12px;--shadow:0 2px 24px rgba(14,35,24,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--cream);color:var(--text-dark);font-size:16px;line-height:1.65}
+.fr,.en,.es{display:none!important}
+body.lang-fr .fr{display:revert!important}
+body.lang-en .en{display:revert!important}
+body.lang-es .es{display:revert!important}
+nav{position:sticky;top:0;z-index:100;background:rgba(14,35,24,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;border-bottom:1px solid rgba(200,169,110,.18)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-mark{width:34px;height:34px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.nav-logo-mark svg{width:18px;height:18px;fill:var(--green-deep)}
+.nav-logo-text{font-family:var(--font-serif);font-size:1.25rem;color:var(--white);letter-spacing:.02em}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:rgba(245,240,232,.7);text-decoration:none;font-size:.875rem;letter-spacing:.04em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.lang-switcher{display:flex;gap:4px}
+.lang-btn{background:transparent;border:1px solid rgba(200,169,110,.3);color:rgba(245,240,232,.6);font-size:.75rem;font-weight:500;letter-spacing:.06em;padding:4px 9px;border-radius:20px;cursor:pointer;font-family:var(--font-sans);transition:all .2s}
+.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+.lang-btn.active{background:rgba(200,169,110,.2);border-color:var(--gold);color:var(--gold-light)}
+.breadcrumb{background:var(--white);border-bottom:1px solid var(--cream-dark);padding:12px 5%;font-size:.82rem;color:var(--text-light)}
+.breadcrumb a{color:var(--green-soft);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{color:var(--text-dark);font-weight:500}
+.page-hero{background:var(--green-deep);padding:72px 5% 60px;position:relative;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0;opacity:.08;background:radial-gradient(circle at 80% 30%,var(--gold) 0%,transparent 60%)}
+.page-hero-inner{max-width:780px;position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(200,169,110,.12);border:1px solid rgba(200,169,110,.3);border-radius:20px;padding:5px 14px;margin-bottom:24px;color:var(--gold);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.hero-eyebrow .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;display:inline-block}
+.page-hero h1{font-family:var(--font-serif);font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.1;color:var(--white);margin-bottom:18px;font-weight:400}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero-sub{font-size:1.05rem;color:rgba(245,240,232,.65);max-width:560px;margin-bottom:36px;font-weight:300;line-height:1.7}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:var(--green-deep);padding:14px 32px;border-radius:var(--radius);font-weight:500;font-size:.95rem;text-decoration:none;border:none;cursor:pointer;transition:background .2s;display:inline-block}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-outline{background:transparent;color:var(--white);padding:14px 32px;border-radius:var(--radius);font-size:.95rem;text-decoration:none;border:1px solid rgba(245,240,232,.3);display:inline-block;transition:border-color .2s}
+.btn-outline:hover{border-color:rgba(245,240,232,.7)}
+.stats-bar{background:var(--white);border-bottom:1px solid var(--cream-dark);display:flex;flex-wrap:wrap}
+.stat-item{padding:20px 32px;border-right:1px solid var(--cream-dark);text-align:center;flex:1;min-width:120px}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--font-serif);font-size:1.5rem;color:var(--green-soft);display:block}
+.stat-label{font-size:.75rem;color:var(--text-light);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.page-section{padding:72px 5%}
+.page-section.bg-white{background:var(--white)}
+.page-section.bg-cream{background:var(--cream)}
+.section-inner{max-width:1080px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-soft);font-weight:500;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';width:24px;height:2px;background:var(--green-soft);display:inline-block}
+h2{font-family:var(--font-serif);font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.12;color:var(--text-dark);font-weight:400;margin-bottom:20px}
+h2 em{font-style:italic;color:var(--green-soft)}
+.article-intro{max-width:780px}
+.article-intro p{color:var(--text-mid);font-weight:300;line-height:1.8;margin-bottom:16px;font-size:1rem}
+.article-intro p strong{color:var(--text-dark);font-weight:500}
+.article-intro h3{font-family:var(--font-serif);font-size:1.3rem;font-weight:400;color:var(--text-dark);margin:32px 0 12px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:40px}
+.feature-item{background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius-lg);padding:24px}
+.feature-icon{font-size:1.6rem;margin-bottom:12px}
+.feature-item h3{font-size:.95rem;font-weight:500;color:var(--text-dark);margin-bottom:6px}
+.feature-item p{font-size:.875rem;color:var(--text-mid);font-weight:300;line-height:1.6}
+.screenshots-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;margin-top:32px}
+.screenshots-row img{height:200px;border-radius:10px;border:1px solid var(--cream-dark);flex-shrink:0;object-fit:cover;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.screenshots-row img:hover{transform:scale(1.03);box-shadow:0 4px 20px rgba(14,35,24,.15)}
+#lightbox{position:fixed;inset:0;z-index:300;background:rgba(14,26,18,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+#lightbox.open{opacity:1;pointer-events:all}
+#lightbox img{max-width:88vw;max-height:88vh;border-radius:10px;object-fit:contain}
+#lb-close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#lb-close:hover{background:rgba(255,255,255,.3)}
+#lb-close svg{width:18px;height:18px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round}
+#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+#lb-prev{left:20px}#lb-next{right:20px}
+#lb-prev:hover,#lb-next:hover{background:rgba(255,255,255,.3)}
+#lb-prev svg,#lb-next svg{width:22px;height:22px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#lb-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
+.lb-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);border:none;cursor:pointer;padding:0;transition:background .2s}
+.lb-dot.active{background:white}
+.data-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:.9rem}
+.data-table th{background:var(--green-deep);color:var(--white);padding:12px 16px;text-align:left;font-weight:400;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+.data-table td{padding:10px 16px;border-bottom:1px solid var(--cream-dark);color:var(--text-mid);font-weight:300}
+.data-table tr:nth-child(even) td{background:var(--white)}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px}
+.pricing-card{background:var(--white);border:1px solid var(--cream-dark);border-radius:var(--radius-lg);padding:28px}
+.pricing-card.featured{border-color:var(--green-soft);box-shadow:0 0 0 2px var(--green-soft)}
+.pricing-badge{display:inline-block;background:var(--green-pale);color:var(--green-soft);border-radius:20px;padding:4px 14px;font-size:.75rem;font-weight:500;margin-bottom:16px}
+.pricing-amount{font-family:var(--font-serif);font-size:2.4rem;color:var(--text-dark);line-height:1}
+.pricing-period{font-size:.85rem;color:var(--text-light);margin-top:4px;margin-bottom:20px}
+.pricing-features{list-style:none;margin-bottom:24px}
+.pricing-features li{font-size:.875rem;color:var(--text-mid);font-weight:300;padding:6px 0;border-bottom:1px solid var(--cream-dark);display:flex;align-items:center;gap:8px}
+.pricing-features li::before{content:'';width:16px;height:16px;flex-shrink:0;background:var(--green-pale) url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%231a5c34' stroke-width='3' stroke-linecap='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E") no-repeat center/10px;border-radius:50%}
+.btn-cta-full{display:block;text-align:center;background:var(--green-deep);color:var(--white);padding:14px 24px;border-radius:var(--radius);font-weight:500;font-size:.95rem;text-decoration:none;transition:background .2s}
+.btn-cta-full:hover{background:#1a3d28}
+.btn-cta-outline{display:block;text-align:center;background:transparent;color:var(--green-deep);border:1.5px solid var(--green-deep);padding:13px 24px;border-radius:var(--radius);font-weight:500;font-size:.9rem;text-decoration:none;transition:all .2s}
+.btn-cta-outline:hover{background:var(--green-deep);color:var(--white)}
+.faq-list{margin-top:32px}
+.faq-item{border-bottom:1px solid var(--cream-dark);padding:20px 0}
+.faq-item h3{font-size:1rem;font-weight:500;color:var(--text-dark);margin-bottom:8px}
+.faq-item p{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+.cta-band{background:var(--green-deep);padding:64px 5%;text-align:center}
+.cta-band p.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.cta-band h2{color:var(--white);max-width:560px;margin:0 auto 16px;font-size:clamp(1.6rem,3vw,2.2rem)}
+.cta-band h2 em{color:var(--gold);font-style:italic}
+.cta-band p.sub{color:rgba(245,240,232,.6);font-weight:300;max-width:440px;margin:0 auto 32px;font-size:.95rem}
+footer{background:var(--green-deep);padding:48px 5% 32px;border-top:1px solid rgba(200,169,110,.1)}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:48px}
+.footer-links h4{color:rgba(245,240,232,.4);font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.footer-links a{display:block;color:rgba(245,240,232,.6);text-decoration:none;font-size:.875rem;margin-bottom:10px;transition:color .2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(200,169,110,.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-bottom p{color:rgba(245,240,232,.3);font-size:.8rem}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .stats-bar{flex-direction:column}
+  .stat-item{border-right:none;border-bottom:1px solid var(--cream-dark)}
+  .footer-top{flex-direction:column}
+  .page-hero{padding:56px 5% 48px}
+}
+</style>
+</head>
+<body class="lang-fr">
+<nav>
+  <a href="https://www.myagrilium.com/" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/><path d="M12 8v8M9 13l3 3 3-3" fill="none" stroke="#0e2318" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    <span class="nav-logo-text">Agrilium</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://www.myagrilium.com/#products"><span class="fr">Produits</span><span class="en">Products</span><span class="es">Productos</span></a>
+    <a href="https://www.myagrilium.com/#about"><span class="fr">À propos</span><span class="en">About</span><span class="es">Acerca de</span></a>
+    <a href="https://www.myagrilium.com/#contact">Contact</a>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+<div class="breadcrumb">
+  <a href="https://www.myagrilium.com/"><span class="fr">Agrilium</span><span class="en">Agrilium</span><span class="es">Agrilium</span></a> ›
+  <a href="https://www.myagrilium.com/#products"><span class="fr">Produits</span><span class="en">Products</span><span class="es">Productos</span></a> ›
+  <span>CapriScan</span>
+</div>
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span><span class="fr">🐐 Logiciel de gestion de troupeau caprin</span><span class="en">🐐 Goat herd management software</span><span class="es">🐐 Software de gestión de rebaño caprino</span></div>
+    <h1><span class="fr">Le carnet de bord numérique de votre <em>troupeau de chèvres</em></span><span class="en">The digital logbook for your <em>goat herd</em></span><span class="es">El cuaderno digital de su <em>rebaño caprino</em></span></h1>
+    <p class="page-hero-sub fr">CapriScan centralise l'inventaire, le suivi sanitaire, la pharmacie vétérinaire et les documents réglementaires de votre élevage caprin. Compatible lecteur RFID Bluetooth RS420. PC et mobile.</p>
+    <p class="page-hero-sub en">CapriScan centralises inventory, health tracking, veterinary pharmacy and regulatory documents for your goat farm. Compatible with Bluetooth RS420 RFID reader. PC and mobile.</p>
+    <p class="page-hero-sub es">CapriScan centraliza el inventario, el seguimiento sanitario, la farmacia veterinaria y los documentos reglamentarios de su explotación caprina. Compatible con lector RFID Bluetooth RS420. PC y móvil.</p>
+    <div class="hero-cta">
+      <a href="https://www.myagrilium.com/#contact" class="btn-primary"><span class="fr">Être notifié à la sortie</span><span class="en">Get notified at launch</span><span class="es">Ser notificado al lanzamiento</span></a>
+      <a href="#fonctionnalites" class="btn-outline"><span class="fr">Voir les fonctionnalités</span><span class="en">See features</span><span class="es">Ver funcionalidades</span></a>
+    </div>
+  </div>
+</div>
+<div class="stats-bar"><div class="stat-item"><span class="stat-num">RS420</span><span class="stat-label" class="fr">Bluetooth Allflex</span><span class="en">Bluetooth Allflex</span><span class="es">Bluetooth Allflex</span></div><div class="stat-item"><span class="stat-num">6 niveaux</span><span class="stat-label" class="fr">Notation morphologique</span><span class="en">Morphological scoring</span><span class="es">Puntuación morfológica</span></div><div class="stat-item"><span class="stat-num">PC + Mobile</span><span class="stat-label" class="fr">Synchronisés cloud</span><span class="en">Cloud synced</span><span class="es">Sincronizados en la nube</span></div><div class="stat-item"><span class="stat-num">29,99 €</span><span class="stat-label" class="fr">par mois</span><span class="en">per month</span><span class="es">por mes</span></div></div>
+<div class="page-section bg-white">
+  <div class="section-inner">
+    <p class="section-label"><span class="fr">Pourquoi CapriScan</span><span class="en">Why CapriScan</span><span class="es">Por qué CapriScan</span></p>
+    <div class="article-intro">
+      <h2>La gestion complète de votre <em>élevage caprin</em></h2>
+<p>Gérer un troupeau caprin au quotidien demande de la rigueur : identifier chaque animal, suivre les traitements et délais d'attente, planifier les vaccinations, produire les documents réglementaires. <strong>CapriScan centralise tout dans une seule application</strong>, utilisable depuis le bureau ou dans l'étable avec un smartphone.</p>
+<p>Développé par un éleveur de 600 chèvres laitières en Occitanie, CapriScan est né du terrain.</p>
+<h3>Identification RFID sans les mains grâce au lecteur RS420</h3>
+<p>Le lecteur bâton Bluetooth <strong>Allflex RS420</strong> se connecte à l'application mobile via Bluetooth SPP. Lors d'une traite, il suffit de scanner la boucle auriculaire pour afficher immédiatement la fiche de l'animal, son historique sanitaire et ses traitements en cours.</p>
+<h3>Pharmacie vétérinaire et alertes DAL/DAV</h3>
+<p>CapriScan intègre une <strong>pharmacie vétérinaire complète</strong>. Les <strong>délais d'attente lait (DAL) et viande (DAV)</strong> sont calculés automatiquement à partir de chaque traitement enregistré.</p>
+    </div>
+  </div>
+</div>
+<div class="page-section bg-cream" id="fonctionnalites">
+  <div class="section-inner">
+    <p class="section-label"><span class="fr">Fonctionnalités</span><span class="en">Features</span><span class="es">Funcionalidades</span></p>
+    <h2><span class="fr">Ce que fait <em>CapriScan</em></span><span class="en">What <em>CapriScan</em> does</span><span class="es">Lo que hace <em>CapriScan</em></span></h2>
+    <div class="features-grid"><div class="feature-item"><div class="feature-icon">📋</div><h3><span class="fr">Inventaire complet</span><span class="en">Complete inventory</span><span class="es">Inventario completo</span></h3><p><span class="fr">Tous vos animaux avec historique : naissances, achats, ventes, réformes, mortalités.</span><span class="en">All your animals with history: births, purchases, sales, culls, deaths.</span><span class="es">Todos sus animales con historial: nacimientos, compras, ventas, reformas, muertes.</span></p></div><div class="feature-item"><div class="feature-icon">📡</div><h3><span class="fr">Lecteur RFID Bluetooth RS420</span><span class="en">Bluetooth RS420 RFID reader</span><span class="es">Lector RFID Bluetooth RS420</span></h3><p><span class="fr">Identification sans les mains. Connexion Bluetooth SPP directe.</span><span class="en">Hands-free identification. Direct Bluetooth SPP connection.</span><span class="es">Identificación sin manos. Conexión Bluetooth SPP directa.</span></p></div><div class="feature-item"><div class="feature-icon">💊</div><h3><span class="fr">Pharmacie vétérinaire</span><span class="en">Veterinary pharmacy</span><span class="es">Farmacia veterinaria</span></h3><p><span class="fr">Médicaments, traitements, stocks, péremptions — tout centralisé.</span><span class="en">Medications, treatments, stock, expiry dates — all centralised.</span><span class="es">Medicamentos, tratamientos, existencias, fechas de caducidad — todo centralizado.</span></p></div><div class="feature-item"><div class="feature-icon">⏱️</div><h3><span class="fr">Alertes DAL / DAV automatiques</span><span class="en">Automatic DAL / DAV alerts</span><span class="es">Alertas DAL / DAV automáticas</span></h3><p><span class="fr">Délais d'attente lait et viande calculés automatiquement à chaque traitement.</span><span class="en">Milk and meat withdrawal periods calculated automatically for each treatment.</span><span class="es">Períodos de supresión en leche y carne calculados automáticamente para cada tratamiento.</span></p></div><div class="feature-item"><div class="feature-icon">📅</div><h3><span class="fr">Calendrier sanitaire</span><span class="en">Health calendar</span><span class="es">Calendario sanitario</span></h3><p><span class="fr">Vaccins, traitements collectifs et visites vétérinaires planifiés.</span><span class="en">Vaccines, collective treatments and vet visits planned.</span><span class="es">Vacunas, tratamientos colectivos y visitas veterinarias planificadas.</span></p></div><div class="feature-item"><div class="feature-icon">📄</div><h3><span class="fr">Documents PDF réglementaires</span><span class="en">Regulatory PDF documents</span><span class="es">Documentos PDF reglamentarios</span></h3><p><span class="fr">Génération automatique des documents de circulation conformes.</span><span class="en">Automatic generation of compliant movement documents.</span><span class="es">Generación automática de documentos de movimiento conformes.</span></p></div><div class="feature-item"><div class="feature-icon">⭐</div><h3><span class="fr">Notation à 6 niveaux</span><span class="en">6-level scoring</span><span class="es">Puntuación de 6 niveles</span></h3><p><span class="fr">Évaluation morphologique et productive pour le renouvellement du troupeau.</span><span class="en">Morphological and productive assessment for herd renewal.</span><span class="es">Evaluación morfológica y productiva para la renovación del rebaño.</span></p></div><div class="feature-item"><div class="feature-icon">🗂️</div><h3><span class="fr">Gestion multi-lots</span><span class="en">Multi-group management</span><span class="es">Gestión multi-lotes</span></h3><p><span class="fr">Organisez vos animaux par lots, cases ou groupes de production.</span><span class="en">Organise your animals by batches, pens or production groups.</span><span class="es">Organice sus animales por lotes, boxes o grupos de producción.</span></p></div><div class="feature-item"><div class="feature-icon">📊</div><h3><span class="fr">Exports CSV</span><span class="en">CSV exports</span><span class="es">Exportaciones CSV</span></h3><p><span class="fr">6 formats d'export pour vos analyses ou l'envoi à votre vétérinaire.</span><span class="en">6 export formats for your analyses or sending to your vet.</span><span class="es">6 formatos de exportación para sus análisis o envío a su veterinario.</span></p></div></div>
+  </div>
+</div>
+
+
+<div class="page-section bg-white">
+  <div class="section-inner">
+    <p class="section-label"><span class="fr">Aperçu</span><span class="en">Screenshots</span><span class="es">Capturas de pantalla</span></p>
+    <h2><span class="fr">L'interface <em>au quotidien</em></span><span class="en">The interface <em>in daily use</em></span><span class="es">La interfaz <em>en el día a día</em></span></h2>
+    <div class="screenshots-row">
+      <img src="https://www.myagrilium.com/images/capriscan.1.jpg" alt="capriscan — Accueil" onclick="openLb(0)" />
+      <img src="https://www.myagrilium.com/images/capriscan.2.jpg" alt="capriscan — Fiche animal" onclick="openLb(1)" />
+      <img src="https://www.myagrilium.com/images/capriscan.3.jpg" alt="capriscan — Notation" onclick="openLb(2)" />
+      <img src="https://www.myagrilium.com/images/capriscan.4.jpg" alt="capriscan — Calendrier sanitaire" onclick="openLb(3)" />
+      <img src="https://www.myagrilium.com/images/capriscan.5.jpg" alt="capriscan — Statistiques" onclick="openLb(4)" />
+    </div>
+  </div>
+</div>
+<div class="page-section bg-white" id="tarifs">
+  <div class="section-inner">
+    <p class="section-label"><span class="fr">Tarifs</span><span class="en">Pricing</span><span class="es">Tarifas</span></p>
+    <h2><span class="fr">Simple et <em>sans engagement</em></span><span class="en">Simple and <em>commitment-free</em></span><span class="es">Simple y <em>sin compromiso</em></span></h2>
+    <div class="pricing-grid">
+  <div class="pricing-card">
+    <div class="pricing-amount">29,99 €</div>
+    <div class="pricing-period"><span class="fr">par mois · sans engagement</span><span class="en">per month · no commitment</span><span class="es">por mes · sin compromiso</span></div>
+    <ul class="pricing-features"><li><span class="fr">PC + Mobile inclus</span><span class="en">PC + Mobile included</span><span class="es">PC + Mobile incluido</span></li><li><span class="fr">Synchronisation cloud</span><span class="en">Cloud sync</span><span class="es">Sincronización en la nube</span></li><li><span class="fr">Multi-lots illimités</span><span class="en">Unlimited groups</span><span class="es">Grupos ilimitados</span></li><li><span class="fr">Mises à jour incluses</span><span class="en">Updates included</span><span class="es">Actualizaciones incluidas</span></li><li><span class="fr">Lecteur RS420 compatible</span><span class="en">RS420 reader compatible</span><span class="es">Lector RS420 compatible</span></li></ul>
+    <a href="https://www.myagrilium.com/#contact" class="btn-cta-outline"><span class="fr">Être notifié</span><span class="en">Get notified</span><span class="es">Ser notificado</span></a>
+  </div>
+  <div class="pricing-card featured">
+    <span class="pricing-badge"><span class="fr">⭐ 2 mois offerts</span><span class="en">⭐ 2 months free</span><span class="es">⭐ 2 meses gratis</span></span>
+    <div class="pricing-amount">299,90 €</div>
+    <div class="pricing-period"><span class="fr">par an · soit 24,99 € / mois</span><span class="en">per year · soit 24,99 € / mois</span><span class="es">por año · soit 24,99 € / mois</span></div>
+    <ul class="pricing-features"><li><span class="fr">PC + Mobile inclus</span><span class="en">PC + Mobile included</span><span class="es">PC + Mobile incluido</span></li><li><span class="fr">Synchronisation cloud</span><span class="en">Cloud sync</span><span class="es">Sincronización en la nube</span></li><li><span class="fr">Multi-lots illimités</span><span class="en">Unlimited groups</span><span class="es">Grupos ilimitados</span></li><li><span class="fr">Mises à jour incluses</span><span class="en">Updates included</span><span class="es">Actualizaciones incluidas</span></li><li><span class="fr">Lecteur RS420 compatible</span><span class="en">RS420 reader compatible</span><span class="es">Lector RS420 compatible</span></li><li><span class="fr">2 mois offerts</span><span class="en">2 months free</span><span class="es">2 meses gratis</span></li></ul>
+    <a href="https://www.myagrilium.com/#contact" class="btn-cta-full"><span class="fr">Être notifié</span><span class="en">Get notified</span><span class="es">Ser notificado</span></a>
+  </div>
+</div>
+  </div>
+</div>
+<div class="page-section bg-cream">
+  <div class="section-inner">
+    <p class="section-label"><span class="fr">Questions fréquentes</span><span class="en">Frequently asked questions</span><span class="es">Preguntas frecuentes</span></p>
+    <h2><span class="fr">Tout ce que vous <em>voulez savoir</em></span><span class="en">Everything you <em>want to know</em></span><span class="es">Todo lo que <em>quiere saber</em></span></h2>
+    <div class="faq-list"><div class="faq-item"><h3><span class="fr">CapriScan fonctionne-t-il avec tous les lecteurs RFID ?</span><span class="en">Does CapriScan work with all RFID readers?</span><span class="es">¿Funciona CapriScan con todos los lectores RFID?</span></h3><p><span class="fr">CapriScan est optimisé pour le lecteur Allflex RS420 en Bluetooth SPP. C'est le seul modèle officiellement testé et validé sur le terrain.</span><span class="en">CapriScan is optimised for the Allflex RS420 reader via Bluetooth SPP. It is the only model officially tested and validated in the field.</span><span class="es">CapriScan está optimizado para el lector Allflex RS420 por Bluetooth SPP. Es el único modelo oficialmente probado y validado sobre el terreno.</span></p></div><div class="faq-item"><h3><span class="fr">Quand CapriScan sera-t-il disponible ?</span><span class="en">When will CapriScan be available?</span><span class="es">¿Cuándo estará disponible CapriScan?</span></h3><p><span class="fr">CapriScan est en phase finale. Laissez votre email via le formulaire de contact pour être parmi les premiers notifiés.</span><span class="en">CapriScan is in its final phase. Leave your email via the contact form to be among the first notified.</span><span class="es">CapriScan está en su fase final. Deje su correo a través del formulario de contacto para ser de los primeros en ser notificado.</span></p></div></div>
+  </div>
+</div>
+<div class="cta-band">
+  <p class="eyebrow"><span class="fr">Sortie imminente</span><span class="en">Coming soon</span><span class="es">Próximamente</span></p>
+  <h2>CapriScan — <em><span class="fr">Être notifié à la sortie</span><span class="en">Get notified at launch</span><span class="es">Ser notificado al lanzamiento</span></em></h2>
+  <p class="sub"><span class="fr">Laissez votre email pour être parmi les premiers notifiés.</span><span class="en">Leave your email to be among the first notified.</span><span class="es">Deje su correo para ser de los primeros en ser notificado.</span></p>
+  <a href="https://www.myagrilium.com/#contact" class="btn-primary"><span class="fr">Être notifié à la sortie</span><span class="en">Get notified at launch</span><span class="es">Ser notificado al lanzamiento</span></a>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <div class="nav-logo-mark" style="width:28px;height:28px;"><svg viewBox="0 0 24 24" fill="#0e2318" width="14" height="14"><path d="M12 2C9 6 5 8 5 13a7 7 0 0014 0c0-5-4-7-7-11z"/></svg></div>
+          <span style="font-family:var(--font-serif);font-size:1.05rem;color:var(--white);">Agrilium</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Produits</span><span class="en">Products</span><span class="es">Productos</span></h4>
+        <a href="/capriscan">CapriScan</a><a href="/capriRation">CapriRation</a>
+        <a href="/boviscan-lait">BoviScan Lait</a><a href="/boviscan-viande">BoviScan Viande</a>
+        <a href="/boviration-lait">BoviRation Lait</a><a href="/boviration-viande">BoviRation Viande</a>
+        <a href="/oviscan-lait">OviScan Lait</a><a href="/oviscan-viande">OviScan Viande</a>
+        <a href="/oviration-lait">OviRation Lait</a><a href="/oviration-viande">OviRation Viande</a>
+        <a href="/meteoscan-pro">MétéoScan Pro</a><a href="/capculture">CapCulture</a><a href="/apiscan">ApiScan</a>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Entreprise</span><span class="en">Company</span><span class="es">Empresa</span></h4>
+        <a href="https://www.myagrilium.com/#about"><span class="fr">À propos</span><span class="en">About</span><span class="es">Acerca de</span></a>
+        <a href="https://www.myagrilium.com/#roadmap"><span class="fr">Feuille de route</span><span class="en">Roadmap</span><span class="es">Hoja de ruta</span></a>
+        <a href="https://www.myagrilium.com/#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4><span class="fr">Légal</span><span class="en">Legal</span><span class="es">Legal</span></h4>
+        <a href="/mentions-legales.html"><span class="fr">Mentions légales</span><span class="en">Legal notice</span><span class="es">Aviso legal</span></a>
+        <a href="/cgu.html"><span class="fr">CGU</span><span class="en">Terms of use</span><span class="es">Condiciones de uso</span></a>
+        <a href="/politique-confidentialite.html"><span class="fr">Confidentialité</span><span class="en">Privacy</span><span class="es">Privacidad</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Agrilium — Thibaut Lafon. <span class="fr">Tous droits réservés.</span><span class="en">All rights reserved.</span><span class="es">Todos los derechos reservados.</span></p>
+      <p>Occitanie, France</p>
+    </div>
+  </div>
+</footer>
+
+<div id="lightbox" onclick="if(event.target===this)closeLb()">
+  <button id="lb-close" onclick="closeLb()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <button id="lb-prev" onclick="navLb(-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+  <img id="lb-img" src="" alt="" />
+  <button id="lb-next" onclick="navLb(1)"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <div id="lb-dots"></div>
+</div>
+<script>
+const LANGS = ['fr','en','es'];
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.documentElement.lang = lang;
+  localStorage.setItem('agrilium-lang', lang);
+  LANGS.forEach(l => { const b = document.getElementById('btn-'+l); if(b) b.classList.toggle('active', l===lang); });
+}
+(function(){ setLang(localStorage.getItem('agrilium-lang') || 'fr'); })();
+</script>
+
+<script>
+const lbImgs = ['https://www.myagrilium.com/images/capriscan.1.jpg', 'https://www.myagrilium.com/images/capriscan.2.jpg', 'https://www.myagrilium.com/images/capriscan.3.jpg', 'https://www.myagrilium.com/images/capriscan.4.jpg', 'https://www.myagrilium.com/images/capriscan.5.jpg'];
+let lbIdx = 0;
+function openLb(i) { lbIdx=i; document.getElementById('lb-img').src=lbImgs[i]; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; renderDots(); }
+function closeLb() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+function navLb(dir) { lbIdx=(lbIdx+dir+lbImgs.length)%lbImgs.length; document.getElementById('lb-img').src=lbImgs[lbIdx]; renderDots(); }
+function renderDots() { const c=document.getElementById('lb-dots'); c.innerHTML=''; lbImgs.forEach((_,i)=>{ const d=document.createElement('button'); d.className='lb-dot'+(i===lbIdx?' active':''); d.onclick=(e)=>{e.stopPropagation();openLb(i);}; c.appendChild(d); }); }
+document.addEventListener('keydown',e=>{ if(!document.getElementById('lightbox').classList.contains('open'))return; if(e.key==='ArrowRight')navLb(1); if(e.key==='ArrowLeft')navLb(-1); if(e.key==='Escape')closeLb(); });
+</script>
+</body>
+</html>
